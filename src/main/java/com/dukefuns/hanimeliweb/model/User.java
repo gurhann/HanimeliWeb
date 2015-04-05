@@ -30,7 +30,7 @@ public class User implements Serializable {
     private String email;
     private String username;
     private String telNo;
-    private String adres;
+    private Address adres;
     @OneToOne
     private Permission permission;
     @OneToMany
@@ -104,11 +104,11 @@ public class User implements Serializable {
         this.telNo = telNo;
     }
 
-    public String getAdres() {
+    public Address getAdres() {
         return adres;
     }
 
-    public void setAdres(String adres) {
+    public void setAdres(Address adres) {
         this.adres = adres;
     }
 
