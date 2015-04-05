@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="hanimeli-pu" transaction-type="JTA">
+  <persistence-unit name="com.dukefuns_HanimeliWeb_war_1.0PU" transaction-type="JTA">
     <jta-data-source>jdbc/hanimeli</jta-data-source>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <class>com.dukefuns.hanimeliweb.model.Comment</class>
+    <class>com.dukefuns.hanimeliweb.model.Food</class>
+    <class>com.dukefuns.hanimeliweb.model.Gallery</class>
+    <class>com.dukefuns.hanimeliweb.model.Order</class>
+    <class>com.dukefuns.hanimeliweb.model.Permission</class>
+    <class>com.dukefuns.hanimeliweb.model.Picture</class>
+    <class>com.dukefuns.hanimeliweb.model.QuantityPrice</class>
+    <class>com.dukefuns.hanimeliweb.model.User</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
