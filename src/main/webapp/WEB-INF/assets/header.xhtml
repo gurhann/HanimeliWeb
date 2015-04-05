@@ -1,0 +1,307 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <!-- Header -->
+            <header class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <!-- Top Header -->
+                    <div id="top-header" class="style2">
+
+                        <div class="row">
+
+                            <nav id="top-navigation" class="col-lg-12 col-md-12 col-sm-12">
+                                <ul class="pull-right">
+                                    <li><a href="#">Profilim</a></li>
+                                    <li><a href="#">Sipariş Sepeti</a></li>
+                                    <li><a href="#">Hakkımızda</a></li>
+                                    <li><a href="#">İletişim</a></li>
+                                </ul>
+                            </nav>
+
+                        </div>
+
+                    </div>
+                    <!-- /Top Header -->
+
+
+
+                    <!-- Main Header -->
+                    <div id="main-header">
+
+                        <div class="row">
+
+                            <div id="logo" class="col-lg-4 col-md-4 col-sm-4">
+                                <a href="index.jsf"><img src="img/logo.png" alt="Logo"/></a>
+                            </div>
+
+                            <nav id="middle-navigation" class="col-lg-8 col-md-8 col-sm-8">
+                                <ul class="pull-right">
+                                    <li class="blue">
+                                        <a href="#"><i class="icons icon-docs"></i>0 Ürün</a>
+                                    </li>
+                                    <li class="red">
+                                        <a href="#"><i class="icons icon-heart-empty"></i>2 Ürün</a>
+                                    </li>
+                                    <li class="orange"><a href="#"><i class="icons icon-basket-2"></i>17 Ürün</a>
+                                        <ul id="cart-dropdown" class="box-dropdown parent-arrow">
+                                            <li>
+                                                <div class="box-wrapper parent-border">
+                                                    <p>Son Eklenen Ürünler</p>
+
+                                                    <table class="cart-table">
+                                                        <tr>
+                                                            <td><img src="img/slide1.jpg" alt="product"/></td>
+                                                            <td>
+                                                                <h6>Makarna</h6>
+                                                                <p>Ürün Kodu PSBJ3</p>
+                                                            </td>
+                                                            <td>
+                                                                <span class="quantity"><span class="light">1 x</span> 20.00TL</span>
+                                                                <a href="#" class="parent-color">Sil</a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><img src="img/slide2.jpg" alt="product"/></td>
+                                                            <td>
+                                                                <h6>Hanım Eli</h6>
+                                                                <p>Ürün Kodu  PSBJ3</p>
+                                                            </td>
+                                                            <td>
+                                                                <span class="quantity"><span class="light">1 x</span> 5.00TL</span>
+                                                                <a href="#" class="parent-color">Sil</a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><img src="img/slide3.jpg" alt="product"/></td>
+                                                            <td>
+                                                                <h6>Mantar</h6>
+                                                                <p>Ürün Kodu PSBJ3</p>
+                                                            </td>
+                                                            <td>
+                                                                <span class="quantity"><span class="light">1 x</span> 15.00TL</span>
+                                                                <a href="#" class="parent-color">Sil</a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+
+                                                    <br class="clearfix"/>
+                                                </div>
+
+                                                <div class="footer">
+                                                    <table class="checkout-table pull-right">
+                                                        <tr>
+                                                            <td class="align-right">KDV:</td>
+                                                            <td>7.20TL</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="align-right">İndirim:</td>
+                                                            <td>7.20TL</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="align-right"><strong>Toplam:</strong></td>
+                                                            <td><strong class="parent-color">40.00TL</strong></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+
+                                                <div class="box-wrapper no-border">
+                                                    <a class="button pull-right parent-background" href="#">Ödeme Yap</a>
+                                                    <a class="button pull-right" href="#">Sepeti Görüntüle</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="login-create purple">
+                                        <i class="icons icon-user"></i>
+                                        <p>Hoşgeldin! <a href="#">Girip Yap</a> ya da<br/><a href="uyeol.jsf">Üye Ol</a></p>
+                                        <ul id="login-dropdown" class="box-dropdown">
+                                            <li>
+                                                <div class="box-wrapper">
+                                                    <h4>Giriş</h4>
+                                                    <div class="iconic-input">
+                                                        <input type="text" placeholder="Mail Adresiniz"/>
+                                                        <i class="icons icon-user-3"></i>
+                                                    </div>
+                                                    <div class="iconic-input">
+                                                        <input type="text" placeholder="Parola"/>
+                                                        <i class="icons icon-lock"></i>
+                                                    </div>
+                                                    <input type="checkbox" id="loginremember"/> <label for="loginremember">Beni hatırla</label>
+                                                    <br/>
+                                                    <br/>
+                                                    <div class="pull-left">
+                                                        <input type="submit" class="orange" value="Giriş"/>
+                                                    </div>
+                                                    <div class="pull-right">
+                                                        <a href="#">Parolamı unuttum!!</a>
+                                                        <br/>
+
+                                                    </div>
+                                                    <br class="clearfix"/>
+                                                </div>
+                                                <div class="footer">
+                                                    <h4 class="pull-left">Sen yenisin galiba?</h4>
+                                                    <a class="button pull-right" href="uyeol.jsf">Üye Ol</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        </div>
+
+                    </div>
+                    <!-- /Main Header -->
+
+
+                    <!-- Main Navigation -->
+                    <nav id="main-navigation" class="style3">
+                        <ul>
+
+                            <li class="home-green current-item">
+                                <a href="index.jsf">
+                                    <span class="nav-caption">Anasayfa</span>
+                                    <span class="nav-description">Detay &amp; Açıklama</span>
+                                </a>
+
+                                <ul class="normal-dropdown normalAnimation">
+                                    <li><a href="#">Şablonlar <i class="icons icon-right-dir"></i></a>
+                                        <ul class="normalAnimation">
+                                            <li><a href="#">Şablon 1</a></li>
+                                            <li><a href="#">Şablon 2</a></li>
+                                            <li><a href="#">Şablon 3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Başlıklar <i class="icons icon-right-dir"></i></a>
+                                        <ul class="normalAnimation">
+                                            <li><a href="#">Başlık 1</a></li>
+                                            <li><a href="#">Başlık 2</a></li>
+                                            <li><a href="#">Başlık 3</a></li>
+                                            <li><a href="#">Başlık 4</a></li>
+                                            <li><a href="#">Başlık 5</a></li>
+                                            <li><a href="#">Başlık 6</a></li>
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="red">
+                                <a href="#">
+                                    <span class="nav-caption">Test Geniş</span>
+                                    <span class="nav-description">Detay &amp; Açıklama</span>
+                                </a>
+
+                                <ul class="wide-dropdown normalAniamtion">
+                                    <li>
+                                        <ul>
+                                            <li><span class="nav-caption">Geniş 1</span></li>
+                                            <li><a href="#"><i class="icons icon-right-dir"></i> Test 1</a></li>
+                                            <li><a href="#"><i class="icons icon-right-dir"></i> Test 2</a></li>
+                                            <li><a href="#"><i class="icons icon-right-dir"></i> Test 3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><span class="nav-caption">Geniş 2</span></li>
+                                            <li><a href="#"><i class="icons icon-right-dir"></i> Test 1</a></li>
+                                            <li><a href="#"><i class="icons icon-right-dir"></i> Test 2</a></li>
+                                            <li><a href="#"><i class="icons icon-right-dir"></i> Test 3</a></li>
+
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><span class="nav-caption">Geniş 3</span></li>
+                                            <li><a href="#"><i class="icons icon-right-dir"></i> Test 1</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                            </li>
+
+                            <li class="blue">
+                                <a href="#">
+                                    <span class="nav-caption">Sabit 1</span>
+                                    <span class="nav-description">Detay &amp; Açıklama</span>
+                                </a>
+                            </li>
+
+                            <li class="orange">
+                                <a href="#">
+                                    <span class="nav-caption">Sabit 2</span>
+                                    <span class="nav-description">Detay &amp; Açıklama</span>
+                                </a>
+                            </li>
+
+                            <li class="green">
+                                <a href="#">
+                                    <span class="nav-caption">Sabit 3</span>
+                                    <span class="nav-description">Detay &amp; Açıklama</span>
+                                </a>
+                            </li>
+
+                            <li class="purple">
+                                <a href="#">
+                                    <span class="nav-caption">Sabit 4</span>
+                                    <span class="nav-description">Detay &amp; Açıklama</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-search">
+                                <i class="icons icon-search-1"></i>
+                            </li>
+
+                        </ul>
+
+                        <div id="search-bar">
+
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <table id="search-bar-table">
+                                    <tr>
+                                        <td class="search-column-1">
+
+                                            <input type="text" placeholder="Aranacak kelimeyi giriniz.."/>
+                                        </td>
+                                        <td class="search-column-2">
+
+                                            <select class="chosen-select-search">
+                                                <option>Tüm Katagoriler</option>
+                                                <option>Katagori 1</option>
+                                                <option>Katagori 2</option>
+                                                <option>Katagori 3</option>
+                                                <option>Katagori 4</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="search-button">
+                                <input type="submit" value=""/>
+                                <i class="icons icon-search-1"></i>
+                            </div>
+                        </div>
+
+                    </nav>
+                    <!-- /Main Navigation -->
+
+                </div>
+
+            </header>
+            <!-- /Header -->
+
+
+        </ui:composition>
+    </h:body>
+</html>
+

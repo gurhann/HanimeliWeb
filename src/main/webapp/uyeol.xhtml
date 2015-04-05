@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+
+    </h:head>
+    <h:body>
+
+        <ui:composition template="/WEB-INF/assets/masterPage.xhtml">
+            <ui:define name="title">Üye Ol</ui:define>
+            <ui:define name="breadcrumbs">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="breadcrumbs">
+                        <p><a href="#">Anasayfa</a> <i class="icons icon-right-dir"></i> Üye Ol</p>
+                    </div>
+                </div>
+
+            </ui:define>
+            <ui:define name="body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="carousel-heading no-margin">
+                            <h4>Üyelik Detayları</h4>
+                        </div>
+                        <div class="page-content">
+                            <p>Zaten üyeyseniz buradan giriş yapabilirsiniz.</p>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="iconic-input">
+                                        <input type="text" placeholder="E-Mail Adresiniz"/>
+                                        <i class="icons icon-user-3"></i>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="iconic-input">
+                                        <input type="text" placeholder="Parolanız"/>
+                                        <i class="icons icon-lock"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="checkbox" id="login-remember-2"/> <label for="login-remember-2">Beni Hatırla</label>
+                            <br/><br/>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 align-left">
+                                    <input type="submit" class="orange" value="Giriş"/>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 align-right">
+                                    <small>
+                                        <a class="align-right" href="#">Parolamı unuttum?</a>
+                                        <br/>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 register-account">
+                        <div class="carousel-heading no-margin">
+                            <h4>Kayıt Ol</h4>
+                        </div>
+                        <div class="page-content">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <p><strong>Üyelik Bilgileri</strong></p>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <p>E-Mail*</p>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <input type="text"/>
+                                </div>	
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <p>Kullanıcı Adı*</p>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <input type="text"/>
+                                </div>	
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <p>Parola*</p>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <input type="text"/>
+                                </div>	
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <p>Parola Onay*</p>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <input type="text"/>
+                                </div>	
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <p>Sözleşme Kabulü</p>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <input type="checkbox" id="i-agree-to-terms"/><label for="i-agree-to-terms">Kullanıcı <a href="#">sözleşmesi</a></label>
+                                </div>	
+
+                            </div>
+
+
+
+
+
+                            <div class="row">
+
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <p>İsim</p>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <input type="text"/>
+                                </div>	
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <p>Soyİsim</p>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <input type="text"/>
+                                </div>	
+
+                            </div>
+
+
+
+                            <div class="row">
+
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <p>Adres </p>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <input type="text"/>
+                                </div>	
+
+                            </div>
+
+
+
+                            <div class="row">
+
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <p>ZIP / Posta Kodu</p>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <input type="text"/>
+                                </div>	
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <p>Şehir</p>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <select class="chosen-select">
+                                        <option>Adana</option>
+                                        <option>Adıyaman</option>
+                                    </select>
+                                </div>	
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <p>İlçe</p>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <select class="chosen-select">
+                                        <option>Seyhan</option>
+                                        <option>Ceyhan</option>
+                                    </select>
+                                </div>	
+
+                            </div>
+
+
+
+                            <div class="row">
+
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <p>Telefon Numarası</p>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <input type="text"/>
+                                </div>	
+
+                            </div>
+
+                            <div class="row">
+
+
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <input class="big" type="submit" value="Kayıt Ol"/>
+                                    <input class="big" type="reset" value="İptal"/>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+
