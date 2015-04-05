@@ -21,19 +21,24 @@ import javax.persistence.Temporal;
  * @author gurhan
  */
 @Entity
-public class Order implements Serializable {
+public class Orders implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
     @OneToOne
     private User user;
+    
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date orderTime;
+    
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date checkTime;
+    
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date deliveryTime;
+    
     @OneToMany
     private ArrayList<Food> foods;
     
@@ -45,6 +50,48 @@ public class Order implements Serializable {
         this.id = id;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Date getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(Date orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public Date getCheckTime() {
+        return checkTime;
+    }
+
+    public void setCheckTime(Date checkTime) {
+        this.checkTime = checkTime;
+    }
+
+    public Date getDeliveryTime() {
+        return deliveryTime;
+    }
+
+    public void setDeliveryTime(Date deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
+    public ArrayList<Food> getFoods() {
+        return foods;
+    }
+
+    public void setFoods(ArrayList<Food> foods) {
+        this.foods = foods;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -55,10 +102,10 @@ public class Order implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Order)) {
+        if (!(object instanceof Orders)) {
             return false;
         }
-        Order other = (Order) object;
+        Orders other = (Orders) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
