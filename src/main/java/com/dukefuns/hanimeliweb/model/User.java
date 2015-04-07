@@ -30,6 +30,7 @@ public class User implements Serializable {
     private String email;
     private String username;
     private String telNo;
+    @OneToOne
     private Address adres;
     @OneToOne
     private Permission permission;

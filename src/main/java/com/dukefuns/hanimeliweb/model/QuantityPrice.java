@@ -6,6 +6,7 @@
 package com.dukefuns.hanimeliweb.model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +25,9 @@ public class QuantityPrice implements Serializable {
     private Long id;
     @OneToOne
     private Food food;
+    @Column(length = 50)
     private String quantity;
+    @Column(length = 50)
     private String price;
     
     public Long getId() {
