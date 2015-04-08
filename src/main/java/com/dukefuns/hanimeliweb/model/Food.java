@@ -7,6 +7,7 @@ package com.dukefuns.hanimeliweb.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class Food implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(length = 50)
     private String name;
     private String description;
     @OneToOne

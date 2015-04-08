@@ -7,6 +7,7 @@ package com.dukefuns.hanimeliweb.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,10 @@ public class User implements Serializable {
     private String lastname;
     private String email;
     private String username;
+    @Column(length = 32)
+    private String password;
     private String telNo;
+    @OneToOne
     private Address adres;
     @OneToOne
     private Permission permission;
@@ -127,8 +131,14 @@ public class User implements Serializable {
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
     }
-    
-    
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
     @Override
     public String toString() {

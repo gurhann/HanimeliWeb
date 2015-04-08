@@ -8,6 +8,7 @@ package com.dukefuns.hanimeliweb.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,6 +28,7 @@ public class Picture implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String description;
+    @Column(length = 40)
     private String path;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date  time;
