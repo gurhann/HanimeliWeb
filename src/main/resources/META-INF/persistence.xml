@@ -8,14 +8,38 @@
     <class>com.dukefuns.hanimeliweb.model.Permission</class>
     <class>com.dukefuns.hanimeliweb.model.Picture</class>
     <class>com.dukefuns.hanimeliweb.model.QuantityPrice</class>
-    <class>com.dukefuns.hanimeliweb.model.User</class>
     <class>com.dukefuns.hanimeliweb.model.Orders</class>
     <class>com.dukefuns.hanimeliweb.model.Address</class>
     <class>com.dukefuns.hanimeliweb.model.Country</class>
     <class>com.dukefuns.hanimeliweb.model.Town</class>
+    <class>com.dukecom.dukefuns.hanimeliweb.model.Carrier</class>
+    <class>com.dukefuns.hanimeliweb.model.Person</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="test-pu" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.dukefuns.hanimeliweb.model.Comment</class>
+    <class>com.dukefuns.hanimeliweb.model.Food</class>
+    <class>com.dukefuns.hanimeliweb.model.Gallery</class>
+    <class>com.dukefuns.hanimeliweb.model.Permission</class>
+    <class>com.dukefuns.hanimeliweb.model.Picture</class>
+    <class>com.dukefuns.hanimeliweb.model.QuantityPrice</class>
+    <class>com.dukefuns.hanimeliweb.model.Orders</class>
+    <class>com.dukefuns.hanimeliweb.model.Address</class>
+    <class>com.dukefuns.hanimeliweb.model.Country</class>
+    <class>com.dukefuns.hanimeliweb.model.Town</class>
+    <class>com.dukecom.dukefuns.hanimeliweb.model.Carrier</class>
+    <class>com.dukefuns.hanimeliweb.model.Person</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:HanimeliTest;create=true"/>
+      <property name="eclipselink.logging.level" value="INFO"/>
     </properties>
   </persistence-unit>
 </persistence>

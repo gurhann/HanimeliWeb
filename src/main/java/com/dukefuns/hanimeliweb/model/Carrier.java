@@ -6,75 +6,32 @@
 package com.dukefuns.hanimeliweb.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * @author gurhan
  */
 @Entity
-public class Comment implements Serializable {
-
+public class Carrier implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    private Person user;
-    private String content;
-    @Column(insertable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
-
-    public Comment() {
-        this.date = new Date();
-    }
-
-    public Comment(Person user, String content) {
-        this.user = user;
-        this.date = new Date();
-        this.content = content;
-    }
-
+    @Column(length = 20)
+    private String name;
+    @Column(length = 20)
+    private String lastname;
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Person getUser() {
-        return user;
-    }
-
-    public void setUser(Person user) {
-        this.user = user;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     @Override
@@ -87,10 +44,10 @@ public class Comment implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Comment)) {
+        if (!(object instanceof Carrier)) {
             return false;
         }
-        Comment other = (Comment) object;
+        Carrier other = (Carrier) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -99,7 +56,7 @@ public class Comment implements Serializable {
 
     @Override
     public String toString() {
-        return "com.dukefuns.hanimeliweb.model.Comment[ id=" + id + " ]";
+        return "com.dukefuns.hanimeliweb.model.Carrier[ id=" + id + " ]";
     }
-
+    
 }

@@ -6,6 +6,7 @@
 package com.dukefuns.hanimeliweb.model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,14 +19,23 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Town implements Serializable {
-
+    // İlçeyi temsil eder
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private short id;
     private String name;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Country country;
+    
+    public Town() {
+        
+    }
+    
+    public Town(String name, Country country) {
+        this.name = name;
+        this.country = country;
+    }
 
     public short getId() {
         return id;

@@ -6,6 +6,7 @@
 package com.dukefuns.hanimeliweb.model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,13 +21,20 @@ import javax.persistence.OneToOne;
 public class Address implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    private User user;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Town town;
     private String content;
+    
+    public Address() {
+        
+    }
+    
+    public Address(Town town, String content) {
+        this.town = town;
+        this.content = content;
+    }
     
     public Long getId() {
         return id;
@@ -41,14 +49,6 @@ public class Address implements Serializable {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Town getTown() {

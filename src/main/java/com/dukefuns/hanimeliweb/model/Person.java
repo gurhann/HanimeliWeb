@@ -7,6 +7,8 @@ package com.dukefuns.hanimeliweb.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,53 +22,41 @@ import javax.persistence.OneToOne;
  * @author gurhan
  */
 @Entity
-public class User implements Serializable {
+public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     
+    @Column(length = 40)
     private String name;
+    @Column(length = 40)
     private String lastname;
+    
+    @Column(unique = true, length = 40)
     private String email;
+    @Column(unique = true, length = 40)
     private String username;
     @Column(length = 32)
     private String password;
+    @Column(length = 11)
     private String telNo;
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Address adres;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Permission permission;
     @OneToMany
-    private ArrayList<Comment> comments;
+    private List<Comment> comments;
     
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
-            return false;
-        }
-        User other = (User) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
 
     public String getName() {
         return name;
@@ -124,11 +114,11 @@ public class User implements Serializable {
         this.permission = permission;
     }
 
-    public ArrayList<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(ArrayList<Comment> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 

@@ -18,13 +18,20 @@ import javax.persistence.Id;
  */
 @Entity
 public class Country implements Serializable {
+    //ili temsil eder
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private byte id;
     @Column(length = 25)
     private String name;
     
+    public Country() {
+        
+    }
+    public Country(String name) {
+        this.name = name;
+    }
     public byte getId() {
         return id;
     }
