@@ -19,23 +19,27 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Address implements Serializable {
+
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @OneToOne(cascade = CascadeType.PERSIST)
     private Town town;
+
     private String content;
-    
+
     public Address() {
         town = new Town();
     }
-    
+
     public Address(Town town, String content) {
         this.town = town;
         this.content = content;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -66,7 +70,6 @@ public class Address implements Serializable {
     public void setContent(String content) {
         this.content = content;
     }
-    
 
     @Override
     public boolean equals(Object object) {
@@ -83,7 +86,7 @@ public class Address implements Serializable {
 
     @Override
     public String toString() {
-        return "com.dukefuns.hanimeliweb.model.Address[ id=" + id + " ]";
+        return content + " " + town.getCountry() + "/" + town.getName();
     }
-    
+
 }

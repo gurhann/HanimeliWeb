@@ -6,6 +6,7 @@
 package com.dukefuns.hanimeliweb.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,15 +26,19 @@ import javax.persistence.OneToMany;
 public class Country implements Serializable {
     //ili temsil eder
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private byte id;
+    
     @Column(length = 25)
     private String name;
+    
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
     private List<Town> towns ;
+    
     public Country() {
-        
+        towns = new ArrayList<>();
     }
     public Country(String name) {
         this.name = name;
@@ -66,7 +71,7 @@ public class Country implements Serializable {
 
     @Override
     public String toString() {
-        return "com.dukefuns.hanimeliweb.model.Country[ id=" + id + " ]";
+        return name;
     }
     
 }

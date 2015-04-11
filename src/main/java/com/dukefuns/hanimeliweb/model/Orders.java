@@ -43,6 +43,9 @@ public class Orders implements Serializable {
     @OneToMany
     private List<Food> foods;
     
+    public Orders() {
+        foods = new ArrayList<>();
+    }
     public Long getId() {
         return id;
     }
@@ -91,8 +94,10 @@ public class Orders implements Serializable {
         this.foods = foods;
     }
     
-    
-
+    public void addFod(Food food){
+        foods.add(food);
+    }
+ 
     @Override
     public int hashCode() {
         int hash = 0;

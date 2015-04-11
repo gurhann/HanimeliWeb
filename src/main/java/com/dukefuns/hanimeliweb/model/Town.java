@@ -27,9 +27,10 @@ public class Town implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private short id;
+    
     private String name;
+    
     @ManyToOne(targetEntity = Country.class)
- 
     private Country country;
 
     public Town() {

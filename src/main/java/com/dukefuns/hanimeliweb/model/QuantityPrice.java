@@ -19,17 +19,22 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class QuantityPrice implements Serializable {
+
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @OneToOne
     private Food food;
+    
     @Column(length = 50)
     private String quantity;
+    
     @Column(length = 50)
     private String price;
-    
+
     public Long getId() {
         return id;
     }
@@ -61,8 +66,7 @@ public class QuantityPrice implements Serializable {
     public void setPrice(String price) {
         this.price = price;
     }
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -87,5 +91,5 @@ public class QuantityPrice implements Serializable {
     public String toString() {
         return "com.dukefuns.hanimeliweb.model.QuantityPrice[ id=" + id + " ]";
     }
-    
+
 }

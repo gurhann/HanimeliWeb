@@ -25,42 +25,49 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @NamedQueries({
-@NamedQuery(name="Person.findUserByMail", query="SELECT p  FROM Person p Where p.email =:email"),
-    @NamedQuery(name="Person.findUserByUserName", query="SELECT p  FROM Person p Where p.username =:username"),
-})
+    @NamedQuery(name = "Person.findUserByMail", query = "SELECT p  FROM Person p Where p.email =:email"),
+    @NamedQuery(name = "Person.findUserByUserName", query = "SELECT p  FROM Person p Where p.username =:username"),})
 public class Person implements Serializable {
+
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @Column(length = 40)
     private String name;
+    
     @Column(length = 40)
     private String lastname;
-    
+
     @Column(unique = true, length = 40)
     private String email;
+    
     @Column(unique = true, length = 40)
     private String username;
+    
     @Column(length = 32)
     private String password;
+    
     @Column(length = 11)
     private String telNo;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private Address adres;
+    
     @OneToOne(cascade = CascadeType.PERSIST)
     private Permission permission;
+    
     @OneToMany
     private List<Comment> comments;
 
     public Person() {
-    adres = new Address();
-    
+        adres = new Address();
+        comments = new ArrayList<>();
+
     }
-    
-    
+
     public int getId() {
         return id;
     }
@@ -68,7 +75,6 @@ public class Person implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-
 
     public String getName() {
         return name;
@@ -133,7 +139,10 @@ public class Person implements Serializable {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
-
+    
+    public void addComment(Comment comment) {
+        comments.add(comment);
+    }
     public String getPassword() {
         return password;
     }
@@ -141,10 +150,10 @@ public class Person implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     @Override
     public String toString() {
         return "com.dukefuns.hanimeliweb.model.Person[ id=" + id + " ]";
     }
-    
+
 }
