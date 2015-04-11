@@ -20,6 +20,10 @@ import java.util.ArrayList;
  */
 public class AddTests extends AbstractPersistentTest {
 
+    /**
+     * Permission nesnesi oluşturur ve persist edip sorunsuz şekilde kayıt 
+     * edilip edilemediğini kontrol eder.
+     */
     @Test
     public void permissionMustbePersistable() {
         Permission per = new Permission();
@@ -31,16 +35,10 @@ public class AddTests extends AbstractPersistentTest {
         System.out.println(per.getName() + "-" + per.getId());
     }
 
-    @Test
-    public void permission2MustbePersistable() {
-        Permission per = new Permission();
-        per.setName("f");
-        tx.begin();
-        em.persist(per);
-        tx.commit();
-        assertNotNull("ID should not be null", per.getId());
-    }
-
+    /**
+     *Country nesnesi oluşturur ve persist edip sorunsuz şekilde kayıt 
+     * edilip edilemediğini kontrol eder.
+     */
     @Test
     public void countryMustBePersistable() {
         Country c = new Country("İstabul");
@@ -50,7 +48,10 @@ public class AddTests extends AbstractPersistentTest {
         assertNotNull("id boş olamaz", c.getId());
 
     }
-
+    /**
+     * Town nesnesi oluşturur bu nesneye yeni oluşturulan Country nesnesini ekler
+     * ve persist edip sorunsuz şekilde kayıt edilip edilemediğini kontrol eder.
+     */
     @Test
     public void townMusBePersistable() {
         Country c = new Country("Ankara");
@@ -62,6 +63,10 @@ public class AddTests extends AbstractPersistentTest {
         assertNotNull("id boş olamaz", t.getId());
     }
 
+    /**
+     * Address nesnesi oluşturup bu nesneye Country ve Town nesnelerini ekleyerek
+     * bu nesnenin veri tabanına kayıt edilip edilemediğini kontrol eder.
+     */
     @Test
     public void addressMustBePersistable() {
         Country c = new Country("Erzurum");
@@ -74,7 +79,11 @@ public class AddTests extends AbstractPersistentTest {
         assertNotNull("id boş olamaz", t.getId());
         assertNotNull("id boş olamaz", addres.getId());
     }
-
+    
+    /**
+     * User nesnesi oluşturur ve persist edip sorunsuz şekilde kayıt 
+     * edilip edilemediğini kontrol eder.
+     */
     @Test
     public void userMustBePersistable() {
         Person user = createUser("user-test","user-test");
@@ -85,6 +94,10 @@ public class AddTests extends AbstractPersistentTest {
         Assert.assertEquals("Erzurum", user.getAdres().getTown().getCountry().getName());
     }
 
+    /**
+     * Comment nesnesi oluşturur ve persist edip sorunsuz şekilde kayıt 
+     * edilip edilemediğini kontrol eder.
+     */
    @Test
    public void commentMustBePersistable() {
        Person p = em.find(Person.class, 1);
@@ -97,13 +110,37 @@ public class AddTests extends AbstractPersistentTest {
        System.out.println(c.getDate());
    }
 
+   /**
+    * Permission nesnesi oluşturur ve persist edip sorunsuz şekilde kayıt 
+     * edilip edilemediğini kontrol eder.
+    */
     @Test(expected = IndexOutOfBoundsException.class)
     public void testIndexOutOfBoundsException() {
         ArrayList emptyList = new ArrayList();
         Object o = emptyList.get(0);
         
     }
-
+    
+    @Test
+    public void personCommentTest() {
+        Person p = createUser("personcomment-test", "personcomment-test");
+        Comment c = em.find(Comment.class, new Long(1));
+        p.addComment(c);
+        Assert.assertEquals(1, p.getComments().size());
+        System.out.println("size"+p.getComments().size());
+        System.out.println(p.getComments().get(0).getContent());
+        System.out.println(c.getUser().getUsername());
+        String username = p.getComments().get(0).getUser().getUsername();
+        Assert.assertEquals("test-user", username);
+    }
+    
+    /**
+     * User nesnesi oluşturur.
+     * Gönderilen uniqe keylere göre bir user nesnesi oluşturur.
+     * @param mail
+     * @param username
+     * @return 
+     */
     private Person createUser(String mail, String username) {
         Address address = em.find(Address.class, new Long(1));
         Permission p = em.find(Permission.class, new Integer(1).byteValue());

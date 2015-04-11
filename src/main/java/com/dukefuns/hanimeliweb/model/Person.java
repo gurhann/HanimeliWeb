@@ -49,6 +49,9 @@ public class Person implements Serializable {
     @OneToMany
     private List<Comment> comments;
     
+    public Person() {
+        comments = new ArrayList<>();
+    }
     public int getId() {
         return id;
     }
@@ -130,6 +133,9 @@ public class Person implements Serializable {
         this.password = password;
     }
     
+   public void addComment(Comment comment) {
+       this.comments.add(comment);
+   }
     @Override
     public String toString() {
         return "com.dukefuns.hanimeliweb.model.User[ id=" + id + " ]";
