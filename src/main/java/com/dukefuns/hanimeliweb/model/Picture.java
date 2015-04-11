@@ -8,6 +8,7 @@ package com.dukefuns.hanimeliweb.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ import javax.persistence.Temporal;
 public class Picture implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
     @Column(length = 40)
@@ -33,7 +34,7 @@ public class Picture implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date  time;
     @OneToMany
-    private ArrayList<Comment> comments;
+    private List<Comment> comments;
     @OneToOne
     private Gallery gallery;
     
@@ -76,9 +77,17 @@ public class Picture implements Serializable {
     public void setGallery(Gallery gallery) {
         this.gallery = gallery;
     }
-    
-    
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;

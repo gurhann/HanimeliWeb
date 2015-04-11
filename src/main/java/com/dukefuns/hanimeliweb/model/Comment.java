@@ -6,13 +6,16 @@
 package com.dukefuns.hanimeliweb.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -20,16 +23,28 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Comment implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
-    private User user;
+    private Person user;
     private String content;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(insertable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-    
+
+    public Comment() {
+        this.date = new Date();
+    }
+
+    public Comment(Person user, String content) {
+        this.user = user;
+        this.date = new Date();
+        this.content = content;
+    }
+
     public Long getId() {
         return id;
     }
@@ -38,11 +53,11 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    public User getUser() {
+    public Person getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Person user) {
         this.user = user;
     }
 
@@ -61,8 +76,7 @@ public class Comment implements Serializable {
     public void setDate(Date date) {
         this.date = date;
     }
-    
-   
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -87,5 +101,5 @@ public class Comment implements Serializable {
     public String toString() {
         return "com.dukefuns.hanimeliweb.model.Comment[ id=" + id + " ]";
     }
-    
+
 }

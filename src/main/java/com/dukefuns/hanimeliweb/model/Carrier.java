@@ -6,36 +6,26 @@
 package com.dukefuns.hanimeliweb.model;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 /**
  *
  * @author gurhan
  */
 @Entity
-public class Address implements Serializable {
+public class Carrier implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private Town town;
-    private String content;
-    
-    public Address() {
-        town = new Town();
-    }
-    
-    public Address(Town town, String content) {
-        this.town = town;
-        this.content = content;
-    }
-    
+    @Column(length = 20)
+    private String name;
+    @Column(length = 20)
+    private String lastname;
     public Long getId() {
         return id;
     }
@@ -51,30 +41,13 @@ public class Address implements Serializable {
         return hash;
     }
 
-    public Town getTown() {
-        return town;
-    }
-
-    public void setTown(Town town) {
-        this.town = town;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-    
-
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Address)) {
+        if (!(object instanceof Carrier)) {
             return false;
         }
-        Address other = (Address) object;
+        Carrier other = (Carrier) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -83,7 +56,7 @@ public class Address implements Serializable {
 
     @Override
     public String toString() {
-        return "com.dukefuns.hanimeliweb.model.Address[ id=" + id + " ]";
+        return "com.dukefuns.hanimeliweb.model.Carrier[ id=" + id + " ]";
     }
     
 }

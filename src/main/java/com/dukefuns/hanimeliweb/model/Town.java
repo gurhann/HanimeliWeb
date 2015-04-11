@@ -10,7 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+
+import javax.persistence.ManyToOne;
+
 
 /**
  *
@@ -19,13 +21,26 @@ import javax.persistence.OneToOne;
 @Entity
 public class Town implements Serializable {
 
+    // İlçeyi temsil eder
+
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private short id;
     private String name;
-    @OneToOne
+    @ManyToOne(targetEntity = Country.class)
+ 
     private Country country;
+
+    public Town() {
+
+    }
+
+    public Town(String name, Country country) {
+        this.name = name;
+        this.country = country;
+
+    }
 
     public short getId() {
         return id;

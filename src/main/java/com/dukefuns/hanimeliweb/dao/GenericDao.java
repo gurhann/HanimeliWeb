@@ -5,11 +5,16 @@
  */
 package com.dukefuns.hanimeliweb.dao;
 
+import java.util.HashMap;
+
+import java.util.List;
+
 /**
  *
  * @author gurhan
  */
 public interface GenericDao<T> {
+
     public T save(T tz);
 
     public T find(Class type, Object id);
@@ -18,4 +23,7 @@ public interface GenericDao<T> {
 
     public void delete(Class type, Object id);
 
+    public List findNamedQuery(String queryName, Class type);
+
+    public List findNamedQuery(String queryName, Class type, HashMap<String,String> hash);
 }

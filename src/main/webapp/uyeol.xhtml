@@ -3,9 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-
+        <f:metadata>
+            <f:viewAction action="#{registerBean.init()}"></f:viewAction>
+        </f:metadata>
     </h:head>
     <h:body>
 
@@ -30,7 +32,7 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="iconic-input">
-                                        <input type="text" placeholder="E-Mail Adresiniz"/>
+                                        <input type="text"  placeholder="E-Mail Adresiniz"/>
                                         <i class="icons icon-user-3"></i>
                                     </div>
                                 </div>
@@ -75,7 +77,11 @@
                                         <p>E-Mail*</p>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <h:inputText value="#{registerBean.user.email}" maxlength="255"/>
+                                        <h:inputText id="e-mail" value="#{registerBean.user.email}" required="true" requiredMessage="Lütfen E-Mail adresi giriniz." maxlength="255"  >
+                                            <f:validator validatorId="com.dukefuns.hanimeliweb.tools.mailvalidator" />
+                                        </h:inputText>
+                                        <h:message  class="alert-span alert-danger" for="e-mail"></h:message>
+
                                     </div>	
 
                                 </div>
@@ -86,7 +92,10 @@
                                         <p>Kullanıcı Adı*</p>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <h:inputText value="#{registerBean.user.username}" maxlength="255"/>
+                                        <h:inputText id="kullaniciname" value="#{registerBean.user.username}" required="true" requiredMessage="Lütfen kullanıcı adını giriniz."  maxlength="255">
+                                            <f:validator validatorId="usernamevalidator"></f:validator>
+                                        </h:inputText>
+                                        <h:message  class="alert-span alert-danger" for="kullaniciname"></h:message>
                                     </div>	
 
                                 </div>
@@ -98,10 +107,11 @@
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
                                         <div class="iconic-input">
-                                            <h:inputText id="password" value="#{registerBean.user.password}" >
+                                            <h:inputSecret id="password" required="true" requiredMessage="Lütfen parolanızı giriniz."  value="#{registerBean.user.password}" >
                                                 <f:ajax render="warn" execute="password repassword" listener="#{registerBean.equalPass()}"  event="change"></f:ajax>
-                                            </h:inputText>
+                                            </h:inputSecret>
                                             <i class="icons icon-lock"></i>
+                                            <h:message  class="alert-span alert-danger" for="password"></h:message>
                                         </div>
                                     </div>	
 
@@ -114,14 +124,15 @@
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
                                         <div class="iconic-input">
-                                            <h:inputText id="repassword" value="#{registerBean.password}">
+                                            <h:inputSecret id="repassword" required="true" requiredMessage="Lütfen parola tekrarını giriniz."  value="#{registerBean.password}">
                                                 <f:ajax render="warn" execute="password repassword" listener="#{registerBean.equalPass()}"  event="change"></f:ajax>
-                                            </h:inputText>
+                                            </h:inputSecret>
                                             <i class="icons icon-lock"></i>
+                                            <h:message  class="alert-span alert-danger" for="repassword"></h:message>
                                         </div>
                                     </div>	
                                     <h:outputText id="warn" escape="false" value="#{registerBean.warn}"></h:outputText>
-                                   
+
                                 </div>
 
                                 <div class="row">
@@ -130,7 +141,8 @@
                                         <p>Sözleşme Kabulü</p>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <h:selectBooleanCheckbox value="#{registerBean.contract}" id="i-agree-to-terms"/><label for="i-agree-to-terms">Kullanıcı <a href="#">sözleşmesi</a></label>
+                                        <h:selectBooleanCheckbox id="sozlesme" value="#{registerBean.contract}" /><label for="sozlesme">Kullanıcı <a href="#">sözleşmesi</a></label>
+                                        <h:message  class="alert-span alert-danger" for="sozlesme"></h:message>
                                     </div>	
 
                                 </div>
@@ -165,7 +177,8 @@
                                         <p>Adres </p>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <h:inputText value="#{registerBean.user.adres}"/>
+                                        <h:inputText id="adres" value="#{registerBean.user.adres.content}" required="true" requiredMessage="Lütfen adresinizi giriniz."/>
+                                        <h:message  class="alert-span alert-danger" for="adres"></h:message>
                                     </div>	
 
                                 </div>
@@ -175,27 +188,28 @@
                                     <div class="col-lg-4 col-md-4 col-sm-4">
                                         <p>Şehir</p>
                                     </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <select class="chosen-select">
-                                            <option>Adana</option>
-                                            <option>Adıyaman</option>
-                                        </select>
-                                    </div>	
-
+                                    <h:panelGroup id="il-group">
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <h:selectOneMenu class="chosen-select" value="#{registerBean.idCountry}" id="il">
+                                                <f:selectItems  value="#{registerBean.countries}" var="country" itemLabel="#{country.name}" itemValue="#{country.id}"></f:selectItems>
+                                                <f:ajax render="ilce-group" execute="il"  listener="#{registerBean.updateTown}"  ></f:ajax>
+                                            </h:selectOneMenu>
+                                            <h:message  class="alert-span alert-danger" for="il"></h:message>
+                                        </div>	
+                                    </h:panelGroup>
                                 </div>
-
                                 <div class="row">
-
                                     <div class="col-lg-4 col-md-4 col-sm-4">
                                         <p>İlçe</p>
                                     </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <select class="chosen-select">
-                                            <option>Seyhan</option>
-                                            <option>Ceyhan</option>
-                                        </select>
-                                    </div>	
-
+                                    <h:panelGroup id="ilce-group">
+                                        <div  class="col-lg-8 col-md-8 col-sm-8">
+                                            <h:selectOneMenu  class="chosen-select"  value="#{registerBean.idtown}"  id="ilceler">
+                                                <f:selectItems id="ilceler1" value="#{registerBean.country.towns}" var="town" itemLabel="#{town.name}" itemValue="#{town.id}"></f:selectItems>
+                                            </h:selectOneMenu>
+                                                <h:message  class="alert-span alert-danger" for="ilceler"></h:message>
+                                        </div>	
+                                    </h:panelGroup>
                                 </div>
 
 
@@ -206,7 +220,9 @@
                                         <p>Telefon Numarası</p>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <h:inputText value="#{registerBean.user.telNo}"/>
+                                        <h:inputText value="#{registerBean.user.telNo}" >
+                                            <f:validator validatorId="com.dukefuns.hanimeliweb.tools.telephonevalidator"></f:validator>
+                                        </h:inputText>
                                     </div>	
 
                                 </div>
@@ -216,7 +232,7 @@
 
 
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <input class="big" type="submit" value="Kayıt Ol"/>
+                                        <h:commandButton class="big" action="#{registerBean.registerUser}"  value="Kayıt Ol"/>
                                         <input class="big" type="reset" value="İptal"/>
                                     </div>
 

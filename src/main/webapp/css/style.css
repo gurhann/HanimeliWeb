@@ -3093,7 +3093,7 @@ a .banner-item{
 	font-size:14px;	
 }
 
-.page-content input[type="text"], .page-content select{
+.page-content input[type="text"],.page-content input[type="password"], .page-content select{
 	width:100%;
 	background:#f7f7f7;
 	font-size:14px;
@@ -4355,7 +4355,7 @@ table.coupon-table td.fit-cell{
     color:#7a8188;
 }
 
-input[type="text"], select{
+input[type="text"],input[type="password"], select{
 	padding:5px 10px;
 	border:1px solid #e6e6e6;
 	height:40px;
@@ -5072,7 +5072,19 @@ input[type="checkbox"]:checked + label:before{
   border-color: #ebccd1;
   color: #a94442;
 }
-.alert {
+
+.alert-span {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  padding: 10px;
+  border: 0;
+  display: block;
+  margin: 5px 0;
+  position: relative;
+  color: rgba(0, 0, 0, 0.6);
+}
+.alert{
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   border-radius: 0;

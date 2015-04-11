@@ -7,6 +7,7 @@ package com.dukefuns.hanimeliweb.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,14 +23,14 @@ import javax.persistence.OneToOne;
 public class Gallery implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @OneToOne
-    private User user;
+    private Person user;
     private String name;
     @OneToMany
-    private ArrayList<Comment> comments;
+    private List<Comment> comments;
     
     public Long getId() {
         return id;
@@ -39,11 +40,11 @@ public class Gallery implements Serializable {
         this.id = id;
     }
 
-    public User getUser() {
+    public Person getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Person user) {
         this.user = user;
     }
 
@@ -55,11 +56,11 @@ public class Gallery implements Serializable {
         this.name = name;
     }
 
-    public ArrayList<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(ArrayList<Comment> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
     
