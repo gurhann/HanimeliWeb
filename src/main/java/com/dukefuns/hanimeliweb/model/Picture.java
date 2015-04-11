@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -24,20 +25,31 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Picture implements Serializable {
+
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     private String description;
+    
     @Column(length = 40)
     private String path;
+    
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date  time;
+    private Date time;
+    
     @OneToMany
     private List<Comment> comments;
-    @OneToOne
-    private Gallery gallery;
     
+    @ManyToOne(targetEntity = Gallery.class)
+    private Gallery gallery;
+
+    public Picture() {
+        comments = new ArrayList<>();
+    }
+
     public Long getId() {
         return id;
     }
@@ -86,8 +98,10 @@ public class Picture implements Serializable {
         this.comments = comments;
     }
     
-    
-    
+    public void addComment(Comment comment) {
+        comments.add(comment);
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -112,5 +126,5 @@ public class Picture implements Serializable {
     public String toString() {
         return "com.dukefuns.hanimeliweb.model.Picture[ id=" + id + " ]";
     }
-    
+
 }

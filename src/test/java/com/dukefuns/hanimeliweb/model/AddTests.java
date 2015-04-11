@@ -6,14 +6,9 @@
 package com.dukefuns.hanimeliweb.model;
 
 import com.dukefuns.hanimeliweb.AbstractPersistentTest;
-import java.sql.Date;
-import javax.persistence.Query;
 import org.junit.Assert;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.ArrayList;
-import javax.persistence.FieldResult;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
@@ -39,11 +34,11 @@ public class AddTests extends AbstractPersistentTest {
         System.out.println(per.getName() + "-" + per.getId());
         
     }
-
     /**
      *Country nesnesi oluşturur ve persist edip sorunsuz şekilde kayıt 
      * edilip edilemediğini kontrol eder.
      */
+
     @Test
     public void t2CountryMustBePersistable() {
         Country c = new Country("İstabul");
@@ -105,6 +100,7 @@ public class AddTests extends AbstractPersistentTest {
      */
    @Test
    public void t6CommentMustBePersistable() {
+
        Person p = em.find(Person.class, 1);
        Comment c = new Comment(p,"ilk yorum");
        tx.begin();
@@ -114,6 +110,7 @@ public class AddTests extends AbstractPersistentTest {
        assertNotNull("comment tarih boş olamaz", c.getDate());
        System.out.println(c.getDate());
    }
+
     
    /**
     * Kullancıya yapılan yorumun kayıt edilip edilmediğini kontrol eder.

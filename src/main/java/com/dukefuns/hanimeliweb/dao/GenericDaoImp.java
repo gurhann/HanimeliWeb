@@ -5,17 +5,26 @@
  */
 package com.dukefuns.hanimeliweb.dao;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import javax.ejb.Local;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
  * @author gurhan
  */
-public class GenericDaoImp<T> implements GenericDao<T>{
-    
+public class GenericDaoImp<T> implements GenericDao<T> {
+
     @PersistenceContext(unitName = "hanimeli-pu")
     EntityManager em;
+
     @Override
     public T save(T t) {
         em.persist(t);
@@ -24,12 +33,12 @@ public class GenericDaoImp<T> implements GenericDao<T>{
         return t;
     }
 
-     @Override
+    @Override
     public T update(T t) {
         return (T) this.em.merge(t);
     }
 
-   @Override
+    @Override
     public T find(Class type, Object id) {
         return (T) this.em.find(type, id);
     }
@@ -40,5 +49,20 @@ public class GenericDaoImp<T> implements GenericDao<T>{
         this.em.remove(ref);
     }
 
-    
+    @Override
+    public List findNamedQuery(String queryName, Class type) {
+        return this.em.createNamedQuery(queryName, type).getResultList();
+    }
+
+    @Override
+    public List findNamedQuery(String queryName, Class type, HashMap<String, String> hash) {
+        TypedQuery query = this.em.createNamedQuery(queryName, type);
+        if (hash != null && hash.size() > 0) {
+            for (String key : hash.keySet()) {
+                query.setParameter(key, hash.get(key));
+            }
+        }
+        return query.getResultList();
+    }
+
 }

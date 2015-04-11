@@ -22,20 +22,30 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Food implements Serializable {
+
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @Column(length = 50)
     private String name;
+    
     private String description;
+    
     @OneToOne
     private Person user;
+    
     private String materials;
     private short preparationTime;
     @OneToMany
     private List<Comment> comments;
-    
+
+    public Food() {
+        comments = new ArrayList<>();
+    }
+
     public Long getId() {
         return id;
     }
@@ -92,8 +102,10 @@ public class Food implements Serializable {
         this.comments = comments;
     }
     
-    
-    
+    public void addComment(Comment comment){
+        comments.add(comment);
+    }
+ 
     @Override
     public int hashCode() {
         int hash = 0;
@@ -118,5 +130,5 @@ public class Food implements Serializable {
     public String toString() {
         return "com.dukefuns.hanimeliweb.model.Food[ id=" + id + " ]";
     }
-    
+
 }

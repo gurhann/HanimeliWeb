@@ -17,11 +17,13 @@ import javax.persistence.Id;
  */
 @Entity
 public class Permission implements Serializable {
+
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private byte id;
-    
+
     private String name;
 
     public short getId() {
@@ -44,5 +46,5 @@ public class Permission implements Serializable {
     public String toString() {
         return "com.dukefuns.hanimeliweb.model.Permission[ id=" + id + " ]";
     }
-    
+
 }

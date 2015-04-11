@@ -8,6 +8,7 @@ package com.dukefuns.hanimeliweb.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,17 +22,27 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Gallery implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @OneToOne
     private Person user;
+
     private String name;
+    
+    @OneToMany(mappedBy = "gallery", cascade = CascadeType.ALL)
+    private List<Picture> pictures;
+
     @OneToMany
     private List<Comment> comments;
-    
+
+    public Gallery() {
+        comments = new ArrayList<>();
+    }
+
     public Long getId() {
         return id;
     }
@@ -63,9 +74,23 @@ public class Gallery implements Serializable {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
-    
-    
-    @Override
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
+    }
+
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
+    }
+
+    public void addPicture(Picture picture) {
+        pictures.add(picture);
+    }
+    @Override 
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
@@ -89,5 +114,5 @@ public class Gallery implements Serializable {
     public String toString() {
         return "com.dukefuns.hanimeliweb.model.Galery[ id=" + id + " ]";
     }
-    
+
 }

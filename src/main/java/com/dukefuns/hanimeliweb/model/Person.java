@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -22,36 +24,50 @@ import javax.persistence.OneToOne;
  * @author gurhan
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Person.findUserByMail", query = "SELECT p  FROM Person p Where p.email =:email"),
+    @NamedQuery(name = "Person.findUserByUserName", query = "SELECT p  FROM Person p Where p.username =:username"),})
 public class Person implements Serializable {
+
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @Column(length = 40)
     private String name;
+    
     @Column(length = 40)
     private String lastname;
-    
+
     @Column(unique = true, length = 40)
     private String email;
+    
     @Column(unique = true, length = 40)
     private String username;
+    
     @Column(length = 32)
     private String password;
+    
     @Column(length = 11)
     private String telNo;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private Address adres;
+    
     @OneToOne(cascade = CascadeType.PERSIST)
     private Permission permission;
+    
     @OneToMany
     private List<Comment> comments;
-    
+
     public Person() {
+        adres = new Address();
         comments = new ArrayList<>();
+
     }
+
     public int getId() {
         return id;
     }
@@ -59,7 +75,6 @@ public class Person implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-
 
     public String getName() {
         return name;
@@ -124,7 +139,10 @@ public class Person implements Serializable {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
-
+    
+    public void addComment(Comment comment) {
+        comments.add(comment);
+    }
     public String getPassword() {
         return password;
     }
@@ -133,15 +151,13 @@ public class Person implements Serializable {
         this.password = password;
     }
     
-   public void addComment(Comment comment) {
-       this.comments.add(comment);
-   }
    public Comment getCommentByIndex(int index){
        return this.comments.get(index);
    }
+
     @Override
     public String toString() {
-        return "com.dukefuns.hanimeliweb.model.User[ id=" + id + " ]";
+        return "com.dukefuns.hanimeliweb.model.Person[ id=" + id + " ]";
     }
-    
+
 }

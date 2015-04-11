@@ -25,12 +25,16 @@ import javax.persistence.TemporalType;
 public class Comment implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @OneToOne
     private Person user;
+    
     private String content;
+    
     @Column(insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
