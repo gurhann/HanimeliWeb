@@ -10,7 +10,7 @@ package com.dukefuns.hanimeliweb.dao;
  * @author gurhan
  */
 public interface GenericDao<T> {
-    public T save(T t);
+    public T save(T tz);
 
     public T find(Class type, Object id);
 

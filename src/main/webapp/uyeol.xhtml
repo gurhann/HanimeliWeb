@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
     </h:head>
@@ -64,167 +65,163 @@
                             <h4>Kayıt Ol</h4>
                         </div>
                         <div class="page-content">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <p><strong>Üyelik Bilgileri</strong></p>
+                            <h:form id="register-form">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <p><strong>Üyelik Bilgileri</strong></p>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>E-Mail*</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h:inputText value="#{registerBean.user.email}" maxlength="255"/>
+                                    </div>	
+
                                 </div>
 
-                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <p>E-Mail*</p>
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <input type="text"/>
-                                </div>	
+                                <div class="row">
 
-                            </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>Kullanıcı Adı*</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h:inputText value="#{registerBean.user.username}" maxlength="255"/>
+                                    </div>	
 
-                            <div class="row">
-
-                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <p>Kullanıcı Adı*</p>
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <input type="text"/>
-                                </div>	
-
-                            </div>
-
-                            <div class="row">
-
-                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <p>Parola*</p>
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <input type="text"/>
-                                </div>	
-
-                            </div>
-
-                            <div class="row">
-
-                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <p>Parola Onay*</p>
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <input type="text"/>
-                                </div>	
-
-                            </div>
-
-                            <div class="row">
-
-                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <p>Sözleşme Kabulü</p>
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <input type="checkbox" id="i-agree-to-terms"/><label for="i-agree-to-terms">Kullanıcı <a href="#">sözleşmesi</a></label>
-                                </div>	
-
-                            </div>
-
-
-
-
-
-                            <div class="row">
-
-                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <p>İsim</p>
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <input type="text"/>
-                                </div>	
-
-                            </div>
-
-                            <div class="row">
-
-                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <p>Soyİsim</p>
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <input type="text"/>
-                                </div>	
-
-                            </div>
-
-
-
-                            <div class="row">
-
-                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <p>Adres </p>
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <input type="text"/>
-                                </div>	
-
-                            </div>
-
-
-
-                            <div class="row">
-
-                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <p>ZIP / Posta Kodu</p>
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <input type="text"/>
-                                </div>	
-
-                            </div>
-
-                            <div class="row">
-
-                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <p>Şehir</p>
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <select class="chosen-select">
-                                        <option>Adana</option>
-                                        <option>Adıyaman</option>
-                                    </select>
-                                </div>	
-
-                            </div>
-
-                            <div class="row">
-
-                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <p>İlçe</p>
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <select class="chosen-select">
-                                        <option>Seyhan</option>
-                                        <option>Ceyhan</option>
-                                    </select>
-                                </div>	
-
-                            </div>
-
-
-
-                            <div class="row">
-
-                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <p>Telefon Numarası</p>
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <input type="text"/>
-                                </div>	
-
-                            </div>
-
-                            <div class="row">
-
-
-
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <input class="big" type="submit" value="Kayıt Ol"/>
-                                    <input class="big" type="reset" value="İptal"/>
                                 </div>
 
-                            </div>
+                                <div class="row">
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>Parola*</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <div class="iconic-input">
+                                            <h:inputText id="password" value="#{registerBean.user.password}" >
+                                                <f:ajax render="warn" execute="password repassword" listener="#{registerBean.equalPass()}"  event="change"></f:ajax>
+                                            </h:inputText>
+                                            <i class="icons icon-lock"></i>
+                                        </div>
+                                    </div>	
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>Parola Onay*</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <div class="iconic-input">
+                                            <h:inputText id="repassword" value="#{registerBean.password}">
+                                                <f:ajax render="warn" execute="password repassword" listener="#{registerBean.equalPass()}"  event="change"></f:ajax>
+                                            </h:inputText>
+                                            <i class="icons icon-lock"></i>
+                                        </div>
+                                    </div>	
+                                    <h:outputText id="warn" escape="false" value="#{registerBean.warn}"></h:outputText>
+                                   
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>Sözleşme Kabulü</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h:selectBooleanCheckbox value="#{registerBean.contract}" id="i-agree-to-terms"/><label for="i-agree-to-terms">Kullanıcı <a href="#">sözleşmesi</a></label>
+                                    </div>	
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>İsim</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h:inputText value="#{registerBean.user.name}"/>
+                                    </div>	
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>Soyİsim</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h:inputText value="#{registerBean.user.lastname}"/>
+                                    </div>	
+
+                                </div>
+
+
+
+                                <div class="row">
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>Adres </p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h:inputText value="#{registerBean.user.adres}"/>
+                                    </div>	
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>Şehir</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <select class="chosen-select">
+                                            <option>Adana</option>
+                                            <option>Adıyaman</option>
+                                        </select>
+                                    </div>	
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>İlçe</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <select class="chosen-select">
+                                            <option>Seyhan</option>
+                                            <option>Ceyhan</option>
+                                        </select>
+                                    </div>	
+
+                                </div>
+
+
+
+                                <div class="row">
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>Telefon Numarası</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h:inputText value="#{registerBean.user.telNo}"/>
+                                    </div>	
+
+                                </div>
+
+                                <div class="row">
+
+
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <input class="big" type="submit" value="Kayıt Ol"/>
+                                        <input class="big" type="reset" value="İptal"/>
+                                    </div>
+
+                                </div>
+                            </h:form>
                         </div>
 
                     </div>

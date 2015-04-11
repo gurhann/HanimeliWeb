@@ -5,6 +5,8 @@
  */
 package com.dukefuns.hanimeliweb.dao;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -12,6 +14,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author gurhan
  */
+@Stateless
+@LocalBean
 public class GenericDaoImp<T> implements GenericDao<T>{
     
     @PersistenceContext(unitName = "hanimeli-pu")
