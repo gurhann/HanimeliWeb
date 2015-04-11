@@ -6,6 +6,7 @@
 package com.dukefuns.hanimeliweb.model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +31,7 @@ public class Town implements Serializable {
     
     private String name;
     
-    @ManyToOne(targetEntity = Country.class)
+    @ManyToOne(targetEntity = Country.class, cascade = CascadeType.PERSIST)
     private Country country;
 
     public Town() {

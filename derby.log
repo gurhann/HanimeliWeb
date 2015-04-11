@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Sat Apr 11 09:54:47 EEST 2015:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-014c-a742-5faa-000002c48700 
-on database directory memory:C:\Users\gurhan-pc\Documents\GitHub\HanimeliWeb\HanimeliTest with class loader sun.misc.Launcher$AppClassLoader@42a57993 
-Loaded from file:/C:/Users/gurhan-pc/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
+Sun Apr 12 01:46:39 EEST 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-014c-aaa9-d6b9-00000364c2c0 
+on database directory memory:/home/gurhan/netbeansp/HanimeliWeb/chapter05DB with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+Loaded from file:/home/gurhan/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_40-b26
-user.dir=C:\Users\gurhan-pc\Documents\GitHub\HanimeliWeb
-os.name=Windows 8.1
+java.runtime.version=1.8.0_25-b17
+user.dir=/home/gurhan/netbeansp/HanimeliWeb
+os.name=Linux
 os.arch=amd64
-os.version=6.3
+os.version=3.13.0-49-generic
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
