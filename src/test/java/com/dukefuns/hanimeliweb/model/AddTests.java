@@ -13,11 +13,15 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
+import javax.persistence.FieldResult;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 
 /**
  *
  * @author gurhan
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AddTests extends AbstractPersistentTest {
 
     /**
@@ -25,7 +29,7 @@ public class AddTests extends AbstractPersistentTest {
      * edilip edilemediğini kontrol eder.
      */
     @Test
-    public void permissionMustbePersistable() {
+    public void t1PermissionMustbePersistable() {
         Permission per = new Permission();
         per.setName("deneme");
         tx.begin();
@@ -33,6 +37,7 @@ public class AddTests extends AbstractPersistentTest {
         tx.commit();
         assertNotNull("ID should not be null", per.getId());
         System.out.println(per.getName() + "-" + per.getId());
+        
     }
 
     /**
@@ -40,7 +45,7 @@ public class AddTests extends AbstractPersistentTest {
      * edilip edilemediğini kontrol eder.
      */
     @Test
-    public void countryMustBePersistable() {
+    public void t2CountryMustBePersistable() {
         Country c = new Country("İstabul");
         tx.begin();
         em.persist(c);
@@ -53,7 +58,7 @@ public class AddTests extends AbstractPersistentTest {
      * ve persist edip sorunsuz şekilde kayıt edilip edilemediğini kontrol eder.
      */
     @Test
-    public void townMusBePersistable() {
+    public void t3TownMusBePersistable() {
         Country c = new Country("Ankara");
         Town t = new Town("Kızılay", c);
         tx.begin();
@@ -68,7 +73,7 @@ public class AddTests extends AbstractPersistentTest {
      * bu nesnenin veri tabanına kayıt edilip edilemediğini kontrol eder.
      */
     @Test
-    public void addressMustBePersistable() {
+    public void t4AddressMustBePersistable() {
         Country c = new Country("Erzurum");
         Town t = new Town("Aziziye", c);
         Address addres = new Address(t, "Dadaşkent");
@@ -85,7 +90,7 @@ public class AddTests extends AbstractPersistentTest {
      * edilip edilemediğini kontrol eder.
      */
     @Test
-    public void userMustBePersistable() {
+    public void t5UserMustBePersistable() {
         Person user = createUser("user-test","user-test");
         tx.begin();
         em.persist(user);
@@ -99,7 +104,7 @@ public class AddTests extends AbstractPersistentTest {
      * edilip edilemediğini kontrol eder.
      */
    @Test
-   public void commentMustBePersistable() {
+   public void t6CommentMustBePersistable() {
        Person p = em.find(Person.class, 1);
        Comment c = new Comment(p,"ilk yorum");
        tx.begin();
@@ -109,31 +114,22 @@ public class AddTests extends AbstractPersistentTest {
        assertNotNull("comment tarih boş olamaz", c.getDate());
        System.out.println(c.getDate());
    }
-
-   /**
-    * Permission nesnesi oluşturur ve persist edip sorunsuz şekilde kayıt 
-     * edilip edilemediğini kontrol eder.
-    */
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testIndexOutOfBoundsException() {
-        ArrayList emptyList = new ArrayList();
-        Object o = emptyList.get(0);
-        
-    }
     
+   /**
+    * Kullancıya yapılan yorumun kayıt edilip edilmediğini kontrol eder.
+    * personcomment-test uniqe özelliklerine göre yeni bir person nesnesi oluşturur.
+    * Daha önceki testlerde eklenmiş olan Comment nesnesini çeker ve yeni oluşturulan
+    * kullanıcıya yapılan yorumlar kısmına ekler.
+    */
     @Test
-    public void personCommentTest() {
+    public void t7PersonCommentTest() {
         Person p = createUser("personcomment-test", "personcomment-test");
         Comment c = em.find(Comment.class, new Long(1));
         p.addComment(c);
         Assert.assertEquals(1, p.getComments().size());
-        System.out.println("size"+p.getComments().size());
-        System.out.println(p.getComments().get(0).getContent());
-        System.out.println(c.getUser().getUsername());
-        String username = p.getComments().get(0).getUser().getUsername();
-        Assert.assertEquals("test-user", username);
+        Assert.assertEquals("user-test", p.getCommentByIndex(0).getUser().getUsername());
+        Assert.assertEquals("ilk yorum",p.getCommentByIndex(0).getContent());
     }
-    
     /**
      * User nesnesi oluşturur.
      * Gönderilen uniqe keylere göre bir user nesnesi oluşturur.
@@ -155,16 +151,5 @@ public class AddTests extends AbstractPersistentTest {
         user.setAdres(address);
         return user;
     }
-//    @Test
-//    public void addressMustbePersisted() {
-//        Country country = new Country("Erzurum");
-//        Town t = new Town("Dadaşkent", country);
-//        Address address = new Address(t, "Abdulhamithan mah......");
-//        tx.begin();
-//        em.persist(address);
-//        tx.commit();
-//        assertNotNull("id boş olamaz", address.getId());
-//        
-//    }
 
 }

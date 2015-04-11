@@ -136,6 +136,9 @@ public class Person implements Serializable {
    public void addComment(Comment comment) {
        this.comments.add(comment);
    }
+   public Comment getCommentByIndex(int index){
+       return this.comments.get(index);
+   }
     @Override
     public String toString() {
         return "com.dukefuns.hanimeliweb.model.User[ id=" + id + " ]";
