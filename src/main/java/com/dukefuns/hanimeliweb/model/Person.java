@@ -25,8 +25,11 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Person.findUserByMail", query = "SELECT p  FROM Person p Where p.email =:email"),
-    @NamedQuery(name = "Person.findUserByUserName", query = "SELECT p  FROM Person p Where p.username =:username"),})
+    @NamedQuery(name = "Person.findUserByMail", 
+            query = "SELECT p  FROM Person p Where p.email =:email"),
+    @NamedQuery(name = "Person.findUserByUserName", 
+            query = "SELECT p  FROM Person p Where p.username =:username")
+})
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;

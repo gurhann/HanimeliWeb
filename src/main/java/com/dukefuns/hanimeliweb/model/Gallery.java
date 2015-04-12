@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -20,6 +22,10 @@ import javax.persistence.OneToOne;
  *
  * @author gurhan
  */
+@NamedQueries({
+    @NamedQuery(name = "Gallery.findGalleriesByUserId",
+            query = "SELECT g FROM Gallery g WHERE g.user.id = :userId")
+})
 @Entity
 public class Gallery implements Serializable {
 

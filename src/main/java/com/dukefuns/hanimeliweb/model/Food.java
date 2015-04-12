@@ -8,11 +8,15 @@ package com.dukefuns.hanimeliweb.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -20,6 +24,12 @@ import javax.persistence.OneToOne;
  *
  * @author gurhan
  */
+@NamedQueries({
+    @NamedQuery(name = "Food.findFoodByUserId",
+            query = "SELECT f FROM Food f WHERE f.user.id = :userId"),
+    @NamedQuery(name = "Food.findFoodByCategoryId",
+            query = "SELECT f FROM Food f WHERE f.foodCategory.id = :catagoryId")
+})
 @Entity
 public class Food implements Serializable {
 
@@ -37,8 +47,12 @@ public class Food implements Serializable {
     @OneToOne
     private Person user;
     
+    @ManyToOne(targetEntity = FoodCategory.class, cascade = CascadeType.PERSIST)
+    private FoodCategory foodCategory;
+    
     private String materials;
     private short preparationTime;
+    
     @OneToMany
     private List<Comment> comments;
 
@@ -112,6 +126,16 @@ public class Food implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
+
+    public FoodCategory getFoodCategory() {
+        return foodCategory;
+    }
+
+    public void setFoodCategory(FoodCategory foodCategory) {
+        this.foodCategory = foodCategory;
+    }
+    
+    
 
     @Override
     public boolean equals(Object object) {

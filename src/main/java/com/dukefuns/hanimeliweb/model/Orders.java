@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -22,6 +24,16 @@ import javax.persistence.Temporal;
  * @author gurhan
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Order.findAllOrderByUserId",
+            query = "SELECT o FROM Orders o WHERE o.user.id = :userId"),
+    @NamedQuery(name = "Order.findCheckedOrderByUserId",
+            query = "SELECT o FROM Orders o WHERE o.user.id = :userId "
+                    + "and o.checkTime IS NOT NULL and o.deliveryTime IS NULL"),
+    @NamedQuery(name = "Order.findDeliveredOrderByUserId",
+            query = "SELECT o FROM Orders o WHERE o.user.id = :userId and "
+                    + "o.checkTime IS NOT NULL and o.deliveryTime IS NOT NULL")
+})
 public class Orders implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

@@ -5,6 +5,7 @@
  */
 package com.dukefuns.hanimeliweb.model;
 
+import com.dukefuns.hanimeliweb.enums.CountryQueries;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import javax.persistence.OneToMany;
  * @author gurhan
  */
 @Entity
-@NamedQuery(name="Country.findAll", query="SELECT c FROM Country c") 
+@NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c") 
 public class Country implements Serializable {
     //ili temsil eder
     private static final long serialVersionUID = 1L;
