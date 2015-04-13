@@ -6,13 +6,8 @@
 package com.dukefuns.hanimeliweb.dao;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import javax.ejb.Local;
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -23,10 +18,11 @@ import javax.persistence.TypedQuery;
 public class GenericDaoImp<T> implements GenericDao<T> {
 
     @PersistenceContext(unitName = "hanimeli-pu")
-    EntityManager em;
+    protected EntityManager em;
 
     @Override
     public T save(T t) {
+
         em.persist(t);
         em.flush();
         em.refresh(t);
@@ -56,7 +52,11 @@ public class GenericDaoImp<T> implements GenericDao<T> {
 
     @Override
     public List findNamedQuery(String queryName, Class type, HashMap<String, String> hash) {
-        TypedQuery query = this.em.createNamedQuery(queryName, type);
+        TypedQuery query = null;
+        try {
+            query = this.em.createNamedQuery(queryName, type);
+        } catch (Exception e) {           
+        }
         if (hash != null && hash.size() > 0) {
             for (String key : hash.keySet()) {
                 query.setParameter(key, hash.get(key));

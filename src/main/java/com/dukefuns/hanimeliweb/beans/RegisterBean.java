@@ -6,22 +6,16 @@
 package com.dukefuns.hanimeliweb.beans;
 
 import com.dukefuns.hanimeliweb.dao.CountryDao;
-import com.dukefuns.hanimeliweb.dao.GenericDaoImp;
 import com.dukefuns.hanimeliweb.dao.PersonDao;
 import com.dukefuns.hanimeliweb.dao.TownDao;
-import com.dukefuns.hanimeliweb.model.Address;
 import com.dukefuns.hanimeliweb.model.Country;
 import com.dukefuns.hanimeliweb.model.Person;
 import com.dukefuns.hanimeliweb.model.Town;
 import java.io.Serializable;
-import java.util.List;
-import javax.annotation.PostConstruct;
+import java.util.List;;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.UISelectItems;
-import javax.faces.component.html.HtmlSelectOneMenu;
-import javax.faces.event.AjaxBehaviorEvent;
 
 /**
  *

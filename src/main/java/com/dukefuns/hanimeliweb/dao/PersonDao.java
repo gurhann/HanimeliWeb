@@ -23,19 +23,18 @@ public class PersonDao extends GenericDaoImp<Object> implements Serializable {
     public Person findUserByMail(String mail) {
         HashMap<String, String> hash = new HashMap<>();
         hash.put("email", mail);
-        try {            
+        try {
             return (Person) findNamedQuery("Person.findUserByMail", Person.class, hash).get(0);
         } catch (Exception e) {
-           
+
         }
         return null;
     }
-    
+
     public Person findUserByUserName(String username) {
         HashMap<String, String> hash = new HashMap<>();
         hash.put("username", username);
-        try {   
-            System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+        try {
             return (Person) findNamedQuery("Person.findUserByUserName", Person.class, hash).get(0);
         } catch (Exception e) {
             System.out.println(e);

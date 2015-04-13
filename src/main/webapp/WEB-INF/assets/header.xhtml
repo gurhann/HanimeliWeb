@@ -2,7 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+
+      xmlns:shiro="http://shiro.apache.org/tags">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -23,13 +26,20 @@
                                     <li><a href="#">Profilim</a></li>
                                     <li><a href="#">Sipariş Sepeti</a></li>
                                     <li><a href="#">Hakkımızda</a></li>
+
                                     <li><a href="#">İletişim</a></li>
+                                    <shiro:authenticated>
+                                        <h:form class="header-form">
+                                            <li> <h:commandButton class="buttontoa" action="#{shiroservice.logout()}" value="Çıkış" /> </li>  
+                                        </h:form>
+                                    </shiro:authenticated>
                                 </ul>
                             </nav>
 
-                        </div>
 
+                        </div>
                     </div>
+
                     <!-- /Top Header -->
 
 
@@ -122,38 +132,44 @@
                                     </li>
                                     <li class="login-create purple">
                                         <i class="icons icon-user"></i>
-                                        <p>Hoşgeldin! <a href="#">Girip Yap</a> ya da<br/><a href="uyeol.jsf">Üye Ol</a></p>
-                                        <ul id="login-dropdown" class="box-dropdown">
-                                            <li>
-                                                <div class="box-wrapper">
-                                                    <h4>Giriş</h4>
-                                                    <div class="iconic-input">
-                                                        <input type="text" placeholder="Mail Adresiniz"/>
-                                                        <i class="icons icon-user-3"></i>
-                                                    </div>
-                                                    <div class="iconic-input">
-                                                        <input type="text" placeholder="Parola"/>
-                                                        <i class="icons icon-lock"></i>
-                                                    </div>
-                                                    <input type="checkbox" id="loginremember"/> <label for="loginremember">Beni hatırla</label>
-                                                    <br/>
-                                                    <br/>
-                                                    <div class="pull-left">
-                                                        <input type="submit" class="orange" value="Giriş"/>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href="#">Parolamı unuttum!!</a>
-                                                        <br/>
+                                        <shiro:guest > <p>Hoşgeldin! Ziyaretçi <a href="#">Girip Yap</a> ya da<br/><a href="uyeol.jsf">Üye Ol</a></p>
+                                            <ul id="login-dropdown" class="box-dropdown">
+                                                <li>
+                                                    <h:form id="login-form">
+                                                        <div class="box-wrapper">
+                                                            <h4>Giriş</h4>
+                                                            <div class="iconic-input">
+                                                                <h:inputText  value="#{shiroservice.username}" p:placeholder="Kullanıcı Adı"/>
+                                                                <i class="icons icon-user-3"></i>
+                                                            </div>
+                                                            <div class="iconic-input">
+                                                                <h:inputSecret value="#{shiroservice.password}"  p:placeholder="Parola"/>
+                                                                <i class="icons icon-lock"></i>
+                                                            </div>
+                                                            <br/>
+                                                            <div class="pull-left">
 
+                                                                <h:commandButton id="login-buton" action="#{shiroservice.login()}" class="orange" value="Giriş"/>
+
+                                                            </div>
+                                                            <div class="pull-right">
+                                                                <a href="#">Parolamı unuttum!!</a>
+                                                                <br/>
+
+                                                            </div>
+                                                            <br class="clearfix"/>
+                                                        </div>
+                                                    </h:form>
+                                                    <div class="footer">
+                                                        <h4 class="pull-left">Sen yenisin galiba?</h4>
+                                                        <a class="button pull-right" href="uyeol.jsf">Üye Ol</a>
                                                     </div>
-                                                    <br class="clearfix"/>
-                                                </div>
-                                                <div class="footer">
-                                                    <h4 class="pull-left">Sen yenisin galiba?</h4>
-                                                    <a class="button pull-right" href="uyeol.jsf">Üye Ol</a>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                                </li>
+                                            </ul>
+                                        </shiro:guest>
+                                        <shiro:authenticated>
+                                            <p class="login-user">Hoşgeldin! <b><h:outputText value="#{personServiceBean.person.name}"></h:outputText></b></p>
+                                        </shiro:authenticated>
                                     </li>
                                 </ul>
                             </nav>
@@ -294,7 +310,8 @@
 
                     </nav>
                     <!-- /Main Navigation -->
-
+                    <div class="clearfix"></div>
+                    <h:messages class="header-error alert-danger alert-span "  globalOnly="true"></h:messages>
                 </div>
 
             </header>
