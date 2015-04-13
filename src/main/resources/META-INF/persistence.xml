@@ -15,6 +15,7 @@
         <class>com.dukefuns.hanimeliweb.model.Carrier</class>
         <class>com.dukefuns.hanimeliweb.model.Person</class>
         <class>com.dukefuns.hanimeliweb.model.Carrier</class>
+        <class>com.dukefuns.hanimeliweb.model.FoodCategory</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
