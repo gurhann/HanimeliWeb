@@ -15,7 +15,7 @@ import javax.ejb.Stateless;
  * @author dcimen
  */
 @Stateless
-public class PersonDao extends GenericDaoImp<Object> implements Serializable {
+public class PersonDao extends GenericDaoImp<Person> implements Serializable {
 
     public PersonDao() {
     }

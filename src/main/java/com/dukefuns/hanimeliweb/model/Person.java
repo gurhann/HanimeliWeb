@@ -56,10 +56,10 @@ public class Person implements Serializable {
     @Column(length = 11)
     private String telNo;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     private Address adres;
     
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     private Permission permission;
     
     @OneToMany

@@ -5,15 +5,22 @@
  */
 package com.dukefuns.hanimeliweb.dao;
 
+import com.dukefuns.hanimeliweb.model.Country;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.NamedQuery;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import javax.persistence.TypedQuery;
 
 /**
@@ -22,20 +29,37 @@ import javax.persistence.TypedQuery;
  */
 public class GenericDaoImp<T> implements GenericDao<T> {
 
-    @PersistenceContext(unitName = "hanimeli-pu")
-    EntityManager em;
-
+    protected EntityManagerFactory emf;
+    protected EntityManager em;
+    protected EntityTransaction tx;
+    @PostConstruct
+    public void init() {
+        emf = PersistenceSingleton.getEntityManagerFactory();
+        em = PersistenceSingleton.getEntityManager();
+        tx = em.getTransaction();
+    }
+    
+    @PreDestroy
+    public void destroy() {
+        emf.close();
+        em.close();
+        
+    }
+    
     @Override
     public T save(T t) {
+        tx.begin();
         em.persist(t);
-        em.flush();
-        em.refresh(t);
+        tx.commit();
         return t;
     }
 
     @Override
     public T update(T t) {
-        return (T) this.em.merge(t);
+        tx.begin();
+        em.merge(t);
+        tx.commit();
+        return t;
     }
 
     @Override
@@ -46,16 +70,18 @@ public class GenericDaoImp<T> implements GenericDao<T> {
     @Override
     public void delete(Class type, Object id) {
         Object ref = this.em.getReference(type, id);
-        this.em.remove(ref);
+        tx.begin();
+        em.remove(ref);
+        tx.commit();
     }
 
     @Override
-    public List findNamedQuery(String queryName, Class type) {
+    public List<T> findNamedQuery(String queryName, Class type) {
         return this.em.createNamedQuery(queryName, type).getResultList();
     }
 
     @Override
-    public List findNamedQuery(String queryName, Class type, HashMap<String, String> hash) {
+    public List<T> findNamedQuery(String queryName, Class type, HashMap<String, String> hash) {
         TypedQuery query = this.em.createNamedQuery(queryName, type);
         if (hash != null && hash.size() > 0) {
             for (String key : hash.keySet()) {
@@ -64,5 +90,10 @@ public class GenericDaoImp<T> implements GenericDao<T> {
         }
         return query.getResultList();
     }
+    
+    @Override
+    public boolean isObjectManaged(T t) {
+        return em.contains(t);
+    }   
 
 }

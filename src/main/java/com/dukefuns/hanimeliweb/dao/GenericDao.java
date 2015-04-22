@@ -23,7 +23,9 @@ public interface GenericDao<T> {
 
     public void delete(Class type, Object id);
 
-    public List findNamedQuery(String queryName, Class type);
+    public List<T> findNamedQuery(String queryName, Class type);
 
-    public List findNamedQuery(String queryName, Class type, HashMap<String,String> hash);
+    public List<T> findNamedQuery(String queryName, Class type, HashMap<String,String> hash);
+    
+    public boolean isObjectManaged(T t);
 }

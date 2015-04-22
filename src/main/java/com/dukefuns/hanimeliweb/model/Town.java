@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 
 /**
@@ -20,6 +22,12 @@ import javax.persistence.ManyToOne;
  * @author gurhan
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(
+        name = "Town.findByName",
+        query = "SELECT t FROM Town t WHERE t.name = :name"
+    )
+})
 public class Town implements Serializable {
 
     // İlçeyi temsil eder

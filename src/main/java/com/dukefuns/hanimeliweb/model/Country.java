@@ -5,7 +5,6 @@
  */
 package com.dukefuns.hanimeliweb.model;
 
-import com.dukefuns.hanimeliweb.enums.CountryQueries;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
@@ -23,7 +23,14 @@ import javax.persistence.OneToMany;
  * @author gurhan
  */
 @Entity
-@NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c") 
+@NamedQueries({
+    @NamedQuery(
+        name = "Country.findAll",
+        query = "SELECT c FROM Country c"),
+    @NamedQuery(
+        name = "Country.findByName",
+        query = "SELECT c FROM Country c WHERE c.name = :name")
+})
 public class Country implements Serializable {
     //ili temsil eder
     private static final long serialVersionUID = 1L;
@@ -32,7 +39,7 @@ public class Country implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private byte id;
     
-    @Column(length = 25)
+    @Column(length = 25, unique = true)
     private String name;
     
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
