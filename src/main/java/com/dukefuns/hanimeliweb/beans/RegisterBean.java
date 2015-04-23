@@ -12,7 +12,8 @@ import com.dukefuns.hanimeliweb.model.Country;
 import com.dukefuns.hanimeliweb.model.Person;
 import com.dukefuns.hanimeliweb.model.Town;
 import java.io.Serializable;
-import java.util.List;;
+import java.util.List;
+;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -21,6 +22,8 @@ import javax.faces.bean.ViewScoped;
  *
  * @author dcimen
  */
+
+
 @ManagedBean
 @ViewScoped
 public class RegisterBean implements Serializable {
@@ -38,6 +41,7 @@ public class RegisterBean implements Serializable {
     private Person user = new Person();
     private String password;
     private String warn;
+    private String result;
     private boolean contract;
     private List<Country> countries;
     private Country country = new Country();
@@ -57,18 +61,35 @@ public class RegisterBean implements Serializable {
     }
 
     public void registerUser() {
-        user.getAdres().setTown((Town) tDao.find(Town.class, idtown));
-        pDao.save(user);
+        try {
+            user.getAdres().setTown((Town) tDao.find(Town.class, idtown));
+            pDao.save(user);
+        } catch (Exception e) {
+            this.result = " <div class=\"col-lg-4 col-md-4 col-sm-4\"></div>\n"
+                    + "                                    <div class=\"col-lg-8 col-md-8 col-sm-8 \" >\n"
+                    + "                                        <div class=\"alert alert-danger\">\n"
+                    + "                                            <strong>Hata!</strong> Üzgünüz sisteme kaydınız gerçekleşemiyor. Lütfen sonra tekrar deneyiniz..\n"
+                    + "                                        </div>\n"
+                    + "                                    </div>\n";
+            return;
+        }
+        this.result = " <div class=\"col-lg-4 col-md-4 col-sm-4\"></div>\n"
+                + "                                    <div class=\"col-lg-12 col-md-12 col-sm-12 \" >\n"
+                + "                                        <div class=\"alert alert-success\">\n"
+                + "                                            <strong>Başarılı!</strong> Aramıza hoşgeldiniz. Kullanıcı girişi yaparak online olabililirsiniz.\n"
+                + "                                        </div>\n"
+                + "                                    </div> <div class=\"col-lg-4 col-md-4 col-sm-4\"></div>\n";
+        user = new Person();
     }
 
     public void equalPass() {
         if (!password.isEmpty() && !user.getPassword().equals(password)) {
             this.warn = " <div class=\"col-lg-4 col-md-4 col-sm-4\"></div>\n"
-                    + "                                    <div class=\"col-lg-8 col-md-8 col-sm-8 \" >\n"
+                    + "                                    <div class=\"col-lg-12 col-md-12 col-sm-12 \" >\n"
                     + "                                        <div class=\"alert alert-danger\">\n"
                     + "                                            <strong>Hata!</strong> Vermiş olduğunuz parolalar uyuşmuyor.\n"
                     + "                                        </div>\n"
-                    + "                                    </div>\n";
+                    + "                                    </div> <div class=\"col-lg-4 col-md-4 col-sm-4\"></div>\n";
         } else {
             this.warn = null;
         }
@@ -139,6 +160,12 @@ public class RegisterBean implements Serializable {
         this.idtown = idtown;
     }
 
- 
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getResult() {
+        return result;
+    }
 
 }

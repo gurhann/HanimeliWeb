@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/adminAssets/masterPage.xhtml">
+            <ui:define name="title">
+                <title><h:outputText value="Kategori Düzenle" rendered="#{not(categoryManagerBean.category.id eq null)}"/><h:outputText value="Kategori Ekle" rendered="#{categoryManagerBean.category.id eq null}"/> | HanımEli</title>
+                <f:metadata>
+                    <f:viewParam value="#{categoryManagerBean.id}" name="id"></f:viewParam>
+                    <f:viewAction action="#{categoryManagerBean.findCategory()}"></f:viewAction>
+                </f:metadata>
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="row mt">
+                    <div class="col-lg-12">
+                        <h:outputText value="#{categoryManagerBean.warn}" escape="false"></h:outputText>
+                        <div class="content-panel">
+                            <h4><i class="fa fa-angle-right"></i>&nbsp; <h:outputText value="Kategori Ekle" rendered="#{categoryManagerBean.category.id eq null}"/><h:outputText value="Kategori Düzenle" rendered="#{not(categoryManagerBean.category.id eq null)}"/> <a href="kategoriekle.jsf" class="btn btn-success  btn-sm right">Kategori Ekle</a></h4><hr/>
+
+
+
+                            <h:form class="form-horizontal style-form" >
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label"> Kategori Adı</label>
+                                    <div class="col-sm-10">
+                                        <h:inputText value="#{categoryManagerBean.category.name}" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">Kısa Açıklama</label>
+                                    <div class="col-sm-10">
+                                        <h:inputText value="#{categoryManagerBean.category.defination}" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">Ata Kategori Seç</label>
+                                    <div class="col-sm-10">
+                                        <h:selectOneMenu class="form-control" value="#{categoryManagerBean.parentId}">
+                                            <f:selectItem itemLabel="Tekil Kategori" itemValue="0" ></f:selectItem>
+                                            <f:selectItems value="#{categoryManagerBean.categories}" var="categories" itemLabel="#{categories.name}" itemValue="#{categories.id}"></f:selectItems>
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">Kategori Sıra</label>
+                                    <div class="col-sm-10">
+                                        <h:selectOneMenu  class="form-control" value="#{categoryManagerBean.category.row}">
+                                            <f:selectItem itemLabel="1" itemValue="1"></f:selectItem>
+                                            <f:selectItem itemLabel="2" itemValue="2"></f:selectItem>
+                                            <f:selectItem itemLabel="3" itemValue="3"></f:selectItem>
+                                            <f:selectItem itemLabel="4" itemValue="4"></f:selectItem>
+                                            <f:selectItem itemLabel="5" itemValue="5"></f:selectItem>
+                                            <f:selectItem itemLabel="6" itemValue="6"></f:selectItem>
+                                            <f:selectItem itemLabel="7" itemValue="7"></f:selectItem>
+                                            <f:selectItem itemLabel="8" itemValue="8"></f:selectItem>
+                                            <f:selectItem itemLabel="9" itemValue="9"></f:selectItem>
+                                            <f:selectItem itemLabel="10" itemValue="10"></f:selectItem>
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <h:commandButton value="Ekle" rendered="#{categoryManagerBean.category .id eq null}" action="#{categoryManagerBean.addOrUpdateCategory()}"  class="btn btn-success "/>
+                                        <h:commandButton value="Düzenle" rendered="#{not(categoryManagerBean.category.id eq null)}" action="#{categoryManagerBean.addOrUpdateCategory()}"  class="btn btn-success "/>
+                                    </div>
+                                </div>
+
+                            </h:form>
+
+                        </div>
+                    </div><!-- col-lg-12-->      	
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -8,6 +8,7 @@ package com.dukefuns.hanimeliweb.dao;
 import com.dukefuns.hanimeliweb.model.Person;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import javax.ejb.Stateless;
 
 /**
@@ -35,11 +36,25 @@ public class PersonDao extends GenericDaoImp<Object> implements Serializable {
         HashMap<String, String> hash = new HashMap<>();
         hash.put("username", username);
         try {
+
             return (Person) findNamedQuery("Person.findUserByUserName", Person.class, hash).get(0);
+        } catch (Exception e) {
+            
+        }
+        return null;
+    }
+
+    public List findUserByPage(int page) {
+        if (page < 1) {
+            page = 0;
+        }
+        try {
+            return findPagination(Person.class, page, 30);
         } catch (Exception e) {
             System.out.println(e);
         }
         return null;
+
     }
 
 }

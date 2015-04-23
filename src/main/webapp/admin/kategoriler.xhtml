@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/adminAssets/masterPage.xhtml">
+            <ui:define name="title">
+                <title>Kategoriler | HanımEli</title>
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="row mt">
+                    <div class="col-md-12">
+                        <h:outputText value="#{categoryManagerBean.warn}" escape="false"></h:outputText>
+                        <div class="content-panel">
+                            <h4><i class="fa fa-angle-right"></i>&nbsp; Kategoriler <a href="kategoriekle.jsf" class="btn btn-success  btn-sm right margin5">Kategoriler Ekle</a></h4><hr/><table class="table table-striped table-advance table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><i class="fa fa-chevron-down"></i> ID</th>
+                                        <th><i class="fa fa-navicon"></i> Adı</th>
+                                        <th><i class="fa fa-sort-amount-desc"></i> Ata Kategori</th>
+                                        <th><i class="fa fa-edit"></i> Seçenekler</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <h:form>
+                                        <ui:repeat var="categories" value="#{categoryManagerBean.categories}">
+                                            <tr>
+                                                <td><h:outputText value="#{categories.id}"></h:outputText></td>
+                                                <td ><a href="#"><h:outputText value="#{categories.name}"></h:outputText></a></td>
+                                              
+                                                <td>
+                                                    <h:outputText value="#{categories.parentCategory.name}" rendered="#{not(categories.parentCategory eq null)}"></h:outputText>
+                                                    <h:outputText value="Tekil Kategori" rendered="#{categories.parentCategory eq null}"></h:outputText>
+
+                                                </td>
+                                                <td>
+                                                    <a href="kategoriekle.jsf?id=#{categories.id}" class="btn btn-primary btn-xs margin5"><i class="fa fa-pencil"></i></a>
+                                                    <h:commandLink class="btn btn-danger btn-xs margin5" action="#{categoryManagerBean.deleteCategory(categories.id)}"><i class="fa fa-trash-o "></i></h:commandLink>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+
+                                    </h:form>
+                                </tbody>
+                            </table>
+                        </div><!-- /content-panel -->
+                    </div><!-- /col-md-12 -->
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

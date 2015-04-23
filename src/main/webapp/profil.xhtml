@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <f:metadata>
+            <f:viewParam name="name" value="#{personServiceBean.username}"></f:viewParam>
+            
+        </f:metadata>
+    </h:head>
+    <h:body>
+
+        <ui:composition template="/WEB-INF/assets/masterPage.xhtml">
+            <ui:define name="title">Profil</ui:define>
+            <ui:define name="breadcrumbs">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="breadcrumbs">
+                        <p><a href="#">Anasayfa</a> <i class="icons icon-right-dir"></i> Profil <h:outputText value="#{personServiceBean.person.username}"></h:outputText></p>
+                    </div>
+                </div>
+
+            </ui:define>
+            <ui:define name="body">
+                <div id="product-single">
+                    <div class="product-single">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5 product-single-image">
+                                <div id="product-slider">
+                                    <ul class="slides">
+                                        <li>
+                                            <ui:fragment ></ui:fragment>
+                                            <ui:fragment></ui:fragment>
+                                            <img  src="img/ev-hanimi.jpg" style="display: inline; visibility: visible;"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7 product-single-info">
+                                <h2>Ayşe Teyze Hanım Kızım </h2>
+                                <div class="rating-box">
+                                    <span>Müşteri Memnuniyeti </span>
+                                    <div class="rating readonly-rating" data-score="4"></div>
+                                </div>
+                                <table>
+                                    <tbody><tr>
+                                            <td><b>Adı:</b></td>
+                                            <td><a href="#"> Ayşe Teyze</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>E-mail:</b></td>
+                                            <td><span class="green">ayse.daugter@gmail.com</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Tel No:</b></td>
+                                            <td>5353533535</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Yaşadığı Yer</b></td>
+                                            <td>Elazığ - Palu</td>
+                                        </tr>
+                                    </tbody></table>
+                                <strong><b>Adres</b></strong>
+                                <span >Test adres bu abi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -26,12 +27,23 @@ public class FoodCategory implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Short id;
     
+    private byte row;
+    
     @Column(length = 40, unique = true)
     private String name;
+    @Column(length = 40)
+    private String defination;
     
-    @OneToMany(mappedBy = "foodCategory", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "foodCategory")
     private List<Food> foods;
-
+    
+    @OneToMany(mappedBy="parentCategory")
+    private List<FoodCategory> parentCategories;
+    
+    @ManyToOne
+    private FoodCategory parentCategory;
+    
+    
     public Short getId() {
         return id;
     }
@@ -79,6 +91,39 @@ public class FoodCategory implements Serializable {
     public void addFood(Food food) {
         foods.add(food);
     }
+
+    public List<FoodCategory> getParentCategories() {
+        return parentCategories;
+    }
+
+    public FoodCategory getParentCategory() {
+        return parentCategory;
+    }
+
+    public void setParentCategories(List<FoodCategory> parentCategories) {
+        this.parentCategories = parentCategories;
+    }
+
+    public void setParentCategory(FoodCategory parentCategory) {
+        this.parentCategory = parentCategory;
+    }
+
+    public byte getRow() {
+        return row;
+    }
+
+    public void setRow(byte row) {
+        this.row = row;
+    }
+
+    public String getDefination() {
+        return defination;
+    }
+
+    public void setDefination(String defination) {
+        this.defination = defination;
+    }
+    
     
     
 

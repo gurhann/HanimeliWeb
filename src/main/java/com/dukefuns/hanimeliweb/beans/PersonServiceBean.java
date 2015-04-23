@@ -13,24 +13,31 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import org.apache.shiro.SecurityUtils;
 
 /**
  *
  * @author dcimen
  */
-@SessionScoped
+@ViewScoped
 @ManagedBean
-public class PersonServiceBean implements Serializable{
+public class PersonServiceBean implements Serializable {
+
     @ManagedProperty(value = "#{shiroservice}")
     ShiroService shiroservice;
+    private String username;
     private Person person;
     @EJB
     PersonDao personDao;
-    
+
     @PostConstruct
-    public void init(){
-    person = personDao.findUserByUserName(shiroservice.getUsername());
+    public void init() {
+        if (SecurityUtils.getSubject().isAuthenticated()) {
+            person = personDao.findUserByUserName(shiroservice.getUsername());
+        } else {
+           person = personDao.findUserByUserName(username); 
+        }
     }
 
     public Person getPerson() {
@@ -48,5 +55,14 @@ public class PersonServiceBean implements Serializable{
     public void setShiroservice(ShiroService shiroservice) {
         this.shiroservice = shiroservice;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
     
+
 }

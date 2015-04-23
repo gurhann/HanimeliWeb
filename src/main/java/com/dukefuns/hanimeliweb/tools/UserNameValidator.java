@@ -29,9 +29,8 @@ public class UserNameValidator implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         Person person = pDao.findUserByUserName(value.toString());
-        System.out.println(value);
+        
         if (person != null) {
-            System.out.println("testttt"+person.getEmail());
             FacesMessage msg = new FacesMessage("Bu Kullanıcı Adı Kayıtlı.", "Bu Kullanıcı Adı Kayıtlı.");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);

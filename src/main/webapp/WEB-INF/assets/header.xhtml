@@ -132,7 +132,7 @@
                                     </li>
                                     <li class="login-create purple">
                                         <i class="icons icon-user"></i>
-                                        <shiro:guest > <p>Hoşgeldin! Ziyaretçi <a href="#">Girip Yap</a> ya da<br/><a href="uyeol.jsf">Üye Ol</a></p>
+                                        <shiro:guest > <p>Hoşgeldin! Ziyaretçi <a href="#">Giriş Yap</a> ya da<br/><a href="uyeol.jsf">Üye Ol</a></p>
                                             <ul id="login-dropdown" class="box-dropdown">
                                                 <li>
                                                     <h:form id="login-form">
@@ -187,92 +187,62 @@
                             <li class="home-green current-item">
                                 <a href="index.jsf">
                                     <span class="nav-caption">Anasayfa</span>
-                                    <span class="nav-description">Detay &amp; Açıklama</span>
+
                                 </a>
 
-                                <ul class="normal-dropdown normalAnimation">
-                                    <li><a href="#">Şablonlar <i class="icons icon-right-dir"></i></a>
-                                        <ul class="normalAnimation">
-                                            <li><a href="#">Şablon 1</a></li>
-                                            <li><a href="#">Şablon 2</a></li>
-                                            <li><a href="#">Şablon 3</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Başlıklar <i class="icons icon-right-dir"></i></a>
-                                        <ul class="normalAnimation">
-                                            <li><a href="#">Başlık 1</a></li>
-                                            <li><a href="#">Başlık 2</a></li>
-                                            <li><a href="#">Başlık 3</a></li>
-                                            <li><a href="#">Başlık 4</a></li>
-                                            <li><a href="#">Başlık 5</a></li>
-                                            <li><a href="#">Başlık 6</a></li>
-                                        </ul>
-                                    </li>
-
-                                </ul>
+                                <!--  <ul class="normal-dropdown normalAnimation">
+                                      <li><a href="#">Şablonlar <i class="icons icon-right-dir"></i></a>
+                                          <ul class="normalAnimation">
+                                              <li><a href="#">Şablon 1</a></li>
+                                              <li><a href="#">Şablon 2</a></li>
+                                              <li><a href="#">Şablon 3</a></li>
+                                          </ul>
+                                      </li>
+                                      <li><a href="#">Başlıklar <i class="icons icon-right-dir"></i></a>
+                                          <ul class="normalAnimation">
+                                              <li><a href="#">Başlık 1</a></li>
+                                              <li><a href="#">Başlık 2</a></li>
+                                              <li><a href="#">Başlık 3</a></li>
+                                              <li><a href="#">Başlık 4</a></li>
+                                              <li><a href="#">Başlık 5</a></li>
+                                              <li><a href="#">Başlık 6</a></li>
+                                          </ul>
+                                      </li>
+  
+                                  </ul>-->
                             </li>
+                            <ui:repeat  value="#{categoryServiceBean.categories}" var="categories">
+                                <ui:fragment rendered="#{categories.parentCategory eq null}">
+                                    <li class="red">
+                                        <a href="#">
+                                            <span class="nav-caption"><h:outputText value="#{categories.name}"></h:outputText></span>
+                                            <span class="nav-description">Detay &amp; Açıklama</span>
+                                             </a>
+                                            <ui:fragment rendered="#{not(categories.parentCategories eq null)}">
+                                                <ul class="normal-dropdown normalAnimation">
+                                                    <ui:repeat value="#{categories.parentCategories}" var="category">
+                                                        <li><a href="#"><h:outputText value="#{category.name}"></h:outputText> </a>
+                                                    </li>
+                                                    </ui:repeat>
+                                                
 
+                                                </ul>
+                                            </ui:fragment>
+                                       
+                                    </li>  
+                                </ui:fragment>
+
+                            </ui:repeat>
                             <li class="red">
                                 <a href="#">
                                     <span class="nav-caption">Test Geniş</span>
                                     <span class="nav-description">Detay &amp; Açıklama</span>
                                 </a>
 
-                                <ul class="wide-dropdown normalAniamtion">
-                                    <li>
-                                        <ul>
-                                            <li><span class="nav-caption">Geniş 1</span></li>
-                                            <li><a href="#"><i class="icons icon-right-dir"></i> Test 1</a></li>
-                                            <li><a href="#"><i class="icons icon-right-dir"></i> Test 2</a></li>
-                                            <li><a href="#"><i class="icons icon-right-dir"></i> Test 3</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <ul>
-                                            <li><span class="nav-caption">Geniş 2</span></li>
-                                            <li><a href="#"><i class="icons icon-right-dir"></i> Test 1</a></li>
-                                            <li><a href="#"><i class="icons icon-right-dir"></i> Test 2</a></li>
-                                            <li><a href="#"><i class="icons icon-right-dir"></i> Test 3</a></li>
 
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <ul>
-                                            <li><span class="nav-caption">Geniş 3</span></li>
-                                            <li><a href="#"><i class="icons icon-right-dir"></i> Test 1</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
 
                             </li>
 
-                            <li class="blue">
-                                <a href="#">
-                                    <span class="nav-caption">Sabit 1</span>
-                                    <span class="nav-description">Detay &amp; Açıklama</span>
-                                </a>
-                            </li>
-
-                            <li class="orange">
-                                <a href="#">
-                                    <span class="nav-caption">Sabit 2</span>
-                                    <span class="nav-description">Detay &amp; Açıklama</span>
-                                </a>
-                            </li>
-
-                            <li class="green">
-                                <a href="#">
-                                    <span class="nav-caption">Sabit 3</span>
-                                    <span class="nav-description">Detay &amp; Açıklama</span>
-                                </a>
-                            </li>
-
-                            <li class="purple">
-                                <a href="#">
-                                    <span class="nav-caption">Sabit 4</span>
-                                    <span class="nav-description">Detay &amp; Açıklama</span>
-                                </a>
-                            </li>
 
                             <li class="nav-search">
                                 <i class="icons icon-search-1"></i>

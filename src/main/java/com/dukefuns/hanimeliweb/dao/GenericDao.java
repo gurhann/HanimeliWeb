@@ -24,6 +24,8 @@ public interface GenericDao<T> {
     public void delete(Class type, Object id);
 
     public List findNamedQuery(String queryName, Class type);
+    
+    public List findPagination(Class type, int start, int finish);
 
     public List findNamedQuery(String queryName, Class type, HashMap<String,String> hash);
 }

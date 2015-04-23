@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -55,13 +56,21 @@ public class GenericDaoImp<T> implements GenericDao<T> {
         TypedQuery query = null;
         try {
             query = this.em.createNamedQuery(queryName, type);
-        } catch (Exception e) {           
+        } catch (Exception e) {
         }
         if (hash != null && hash.size() > 0) {
             for (String key : hash.keySet()) {
                 query.setParameter(key, hash.get(key));
             }
         }
+        return query.getResultList();
+    }
+
+    @Override
+    public List findPagination(Class type, int start, int finish) {
+        Query query = this.em.createQuery("From " + type.getSimpleName() +" c");
+        query.setFirstResult((start - 1) * finish);
+        query.setMaxResults(finish);
         return query.getResultList();
     }
 

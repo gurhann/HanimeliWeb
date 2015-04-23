@@ -31,7 +31,7 @@ public class Town implements Serializable {
     
     private String name;
     
-    @ManyToOne(targetEntity = Country.class, cascade = CascadeType.PERSIST)
+    @ManyToOne(targetEntity = Country.class)
     private Country country;
 
     public Town() {

@@ -23,42 +23,46 @@
 
             </ui:define>
             <ui:define name="body">
+                <h:outputText escape="false" value="#{registerBean.result}"></h:outputText>
                 <div class="row">
+
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="carousel-heading no-margin">
                             <h4>Üyelik Detayları</h4>
                         </div>
                         <div class="page-content">
-                            <p>Zaten üyeyseniz buradan giriş yapabilirsiniz.</p>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="iconic-input">
-                                        <h:inputText value="#{shiroservice.username}"  p:placeholder="Kullanıcı Adı"/>
-                                        <i class="icons icon-user-3"></i>
+                            <h:form>
+                                <p>Zaten üyeyseniz buradan giriş yapabilirsiniz.</p>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="iconic-input">
+                                            <h:inputText value="#{shiroservice.username}"  p:placeholder="Kullanıcı Adı"/>
+                                            <i class="icons icon-user-3"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="iconic-input">
+                                            <input type="text" placeholder="Parolanız"/>
+                                            <i class="icons icon-lock"></i>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="iconic-input">
-                                        <input type="text" placeholder="Parolanız"/>
-                                        <i class="icons icon-lock"></i>
+                                <input type="checkbox" id="login-remember-2"/> <label for="login-remember-2">Beni Hatırla</label>
+                                <br/><br/>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 align-left">
+                                        <input type="submit" class="orange" value="Giriş"/>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 align-right">
+                                        <small>
+                                            <a class="align-right" href="#">Parolamı unuttum?</a>
+                                            <br/>
+                                        </small>
                                     </div>
                                 </div>
-                            </div>
-
-                            <input type="checkbox" id="login-remember-2"/> <label for="login-remember-2">Beni Hatırla</label>
-                            <br/><br/>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 align-left">
-                                    <input type="submit" class="orange" value="Giriş"/>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 align-right">
-                                    <small>
-                                        <a class="align-right" href="#">Parolamı unuttum?</a>
-                                        <br/>
-                                    </small>
-                                </div>
-                            </div>
+                            </h:form>
                         </div>
                     </div>
                 </div>
@@ -142,7 +146,7 @@
                                         <p>Sözleşme Kabulü</p>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <h:selectBooleanCheckbox id="sozlesme" value="#{registerBean.contract}" /><label for="sozlesme">Kullanıcı <a href="#">sözleşmesi</a></label>
+                                        <h:selectBooleanCheckbox id="sozlesme" value="#{registerBean.contract}"  /><label for="sozlesme">Kullanıcı <a href="#">sözleşmesi</a></label>
                                         <h:message  class="alert-span alert-danger" for="sozlesme"></h:message>
                                     </div>	
 
@@ -169,8 +173,6 @@
                                     </div>	
 
                                 </div>
-
-
 
                                 <div class="row">
 
@@ -208,7 +210,7 @@
                                             <h:selectOneMenu  class="chosen-select"  value="#{registerBean.idtown}"  id="ilceler">
                                                 <f:selectItems id="ilceler1" value="#{registerBean.country.towns}" var="town" itemLabel="#{town.name}" itemValue="#{town.id}"></f:selectItems>
                                             </h:selectOneMenu>
-                                                <h:message  class="alert-span alert-danger" for="ilceler"></h:message>
+                                            <h:message  class="alert-span alert-danger" for="ilceler"></h:message>
                                         </div>	
                                     </h:panelGroup>
                                 </div>
@@ -221,9 +223,11 @@
                                         <p>Telefon Numarası</p>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <h:inputText value="#{registerBean.user.telNo}" >
+                                        <h:inputText id="telno" value="#{registerBean.user.telNo}" >
                                             <f:validator validatorId="com.dukefuns.hanimeliweb.tools.telephonevalidator"></f:validator>
                                         </h:inputText>
+                                        <h:message  class="alert-span alert-danger" for="telno"></h:message>
+
                                     </div>	
 
                                 </div>

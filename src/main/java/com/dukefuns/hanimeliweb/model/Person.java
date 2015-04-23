@@ -25,43 +25,51 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Person.findUserByMail", 
+    @NamedQuery(name = "Person.findUserByMail",
             query = "SELECT p  FROM Person p Where p.email =:email"),
-    @NamedQuery(name = "Person.findUserByUserName", 
+    @NamedQuery(name = "Person.findUserByUserName",
             query = "SELECT p  FROM Person p Where p.username =:username")
+
 })
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(length = 40)
     private String name;
-    
+
     @Column(length = 40)
     private String lastname;
+    
 
+    
     @Column(unique = true, length = 40)
     private String email;
-    
+
     @Column(unique = true, length = 40)
     private String username;
-    
+
     @Column(length = 32)
     private String password;
-    
+
     @Column(length = 11)
     private String telNo;
 
+    @Column(columnDefinition = "char(250)")
+    private String about;
+    @Column(columnDefinition = "char(64)")
+    private String avatarPath;
+
     @OneToOne(cascade = CascadeType.PERSIST)
     private Address adres;
-    
+
     @OneToOne(cascade = CascadeType.PERSIST)
     private Permission permission;
-    
+
     @OneToMany
     private List<Comment> comments;
 
@@ -86,6 +94,7 @@ public class Person implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
 
     public String getLastname() {
         return lastname;
@@ -127,6 +136,23 @@ public class Person implements Serializable {
         this.adres = adres;
     }
 
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public String getAvatarPath() {
+        return avatarPath;
+    }
+
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
+    }
+    
+
     public Permission getPermission() {
         return permission;
     }
@@ -142,10 +168,11 @@ public class Person implements Serializable {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
-    
+
     public void addComment(Comment comment) {
         comments.add(comment);
     }
+
     public String getPassword() {
         return password;
     }
@@ -153,10 +180,11 @@ public class Person implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-   public Comment getCommentByIndex(int index){
-       return this.comments.get(index);
-   }
+
+    public Comment getCommentByIndex(int index) {
+        return this.comments.get(index);
+    }
+
 
     @Override
     public String toString() {
