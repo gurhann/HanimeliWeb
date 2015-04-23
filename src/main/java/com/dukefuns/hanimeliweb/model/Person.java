@@ -64,10 +64,11 @@ public class Person implements Serializable {
     @Column(columnDefinition = "char(64)")
     private String avatarPath;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    
+    @OneToOne(cascade = CascadeType.ALL)
     private Address adres;
-
-    @OneToOne(cascade = CascadeType.PERSIST)
+    
+    @OneToOne(cascade = CascadeType.ALL)
     private Permission permission;
 
     @OneToMany

@@ -5,7 +5,9 @@
  */
 package com.dukefuns.hanimeliweb.dao;
 
+import com.dukefuns.hanimeliweb.model.Town;
 import java.io.Serializable;
+import java.util.HashMap;
 import javax.ejb.Stateless;
 
 /**
@@ -13,9 +15,15 @@ import javax.ejb.Stateless;
  * @author dcimen
  */
 @Stateless
-public class TownDao extends GenericDaoImp<Object> implements Serializable{
+public class TownDao extends GenericDaoImp<Town> implements Serializable{
 
     public TownDao() {
+    }
+    
+    public Town findTownByName(String name) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("name", name);
+        return findNamedQuery("Town.findByName", Town.class, map).get(0);
     }
     
     

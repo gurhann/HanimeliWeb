@@ -10,6 +10,6 @@ package com.dukefuns.hanimeliweb.enums;
  * @author gurhan
  */
 public class PersonQueries {
-    public final String findUserByEmail = "Person.findUserByMail";
-    public final String findUserByUserName = "Person.findUserByUserName";
+    public static final String findUserByEmail = "Person.findUserByMail";
+    public static final String findUserByUserName = "Person.findUserByUserName";
 }
