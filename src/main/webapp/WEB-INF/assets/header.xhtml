@@ -24,7 +24,9 @@
 
                             <nav id="top-navigation" class="col-lg-12 col-md-12 col-sm-12">
                                 <ul class="pull-right">
-                                    <li><a href="#">Profilim</a></li>
+                                    <shiro:authenticated>
+                                    <li><a href="profil.jsf?name=#{shiroservice.person.username}">Profilim</a></li>
+                                    </shiro:authenticated>
                                     <li><a href="#">Sipariş Sepeti</a></li>
                                     <li><a href="#">Hakkımızda</a></li>
 
@@ -169,7 +171,7 @@
                                             </ul>
                                         </shiro:guest>
                                         <shiro:authenticated>
-                                            <p class="login-user">Hoşgeldin! <b><h:outputText value="#{personServiceBean.person.name}"></h:outputText></b></p>
+                                            <p class="login-user">Hoşgeldin! <b><a href="profil.jsf?name=#{shiroservice.person.username}"><h:outputText value="#{shiroservice.person.name}"></h:outputText></a></b></p>
                                         </shiro:authenticated>
                                     </li>
                                 </ul>
@@ -234,16 +236,7 @@
                                 </ui:fragment>
 
                             </ui:repeat>
-                            <li class="red">
-                                <a href="#">
-                                    <span class="nav-caption">Test Geniş</span>
-                                    <span class="nav-description">Detay &amp; Açıklama</span>
-                                </a>
-
-
-
-                            </li>
-
+                   
 
                             <li class="nav-search">
                                 <i class="icons icon-search-1"></i>

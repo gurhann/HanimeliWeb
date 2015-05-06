@@ -7,38 +7,39 @@ package com.dukefuns.hanimeliweb.beans;
 
 import com.dukefuns.hanimeliweb.dao.PersonDao;
 import com.dukefuns.hanimeliweb.model.Person;
-import com.dukefuns.hanimeliweb.shiro.ShiroService;
 import java.io.Serializable;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
-import org.apache.shiro.SecurityUtils;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author dcimen
  */
-@ViewScoped
+@SessionScoped
 @ManagedBean
 public class PersonServiceBean implements Serializable {
 
-    @ManagedProperty(value = "#{shiroservice}")
-    ShiroService shiroservice;
     private String username;
-    private Person person;
+    private Person person;   
+    
     @EJB
     PersonDao personDao;
+  
 
-    @PostConstruct
+    public PersonServiceBean() {
+
+    }
+    
+    
     public void init() {
-        if (SecurityUtils.getSubject().isAuthenticated()) {
-            person = personDao.findUserByUserName(shiroservice.getUsername());
+        if (username != null) {
+            person = personDao.findUserByUserName(username);
         } else {
-           person = personDao.findUserByUserName(username); 
+            person = null;
         }
     }
+
 
     public Person getPerson() {
         return person;
@@ -48,14 +49,6 @@ public class PersonServiceBean implements Serializable {
         this.person = person;
     }
 
-    public ShiroService getShiroservice() {
-        return shiroservice;
-    }
-
-    public void setShiroservice(ShiroService shiroservice) {
-        this.shiroservice = shiroservice;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -63,6 +56,10 @@ public class PersonServiceBean implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
+
+
     
+
+   
 
 }

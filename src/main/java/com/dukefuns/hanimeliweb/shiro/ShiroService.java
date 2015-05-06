@@ -5,9 +5,14 @@
  */
 package com.dukefuns.hanimeliweb.shiro;
 
+import com.dukefuns.hanimeliweb.beans.PersonManagerBean;
+import com.dukefuns.hanimeliweb.dao.PersonDao;
+import com.dukefuns.hanimeliweb.model.Person;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.apache.shiro.SecurityUtils;
@@ -28,7 +33,10 @@ public class ShiroService implements Serializable {
 
     private String username;
     private String password;
-
+    private Person person;
+    @EJB
+    PersonDao personDao;
+    
     public ShiroService() {
 
     }
@@ -40,6 +48,9 @@ public class ShiroService implements Serializable {
         try {
             user.login(token);
             returnPage = "/index.jsf?faces-redirect=true";
+            person = personDao.findUserByUserName(username);
+         
+       
         } catch (UnknownAccountException | IncorrectCredentialsException uae) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Giriş başarısız!! Lütfen kullanıcı adınızı veya parolanızı kontrol ediniz.", "Bu kullanıcı geçersiz yada tanımlı değil."));
             return null;
@@ -59,6 +70,7 @@ public class ShiroService implements Serializable {
         Subject currentUser = SecurityUtils.getSubject();
         try {
             currentUser.logout();
+            person =null;
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Çıkış başarısız", "Çıkış yapılamadı."));
         }
@@ -80,5 +92,15 @@ public class ShiroService implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
    
+
 }

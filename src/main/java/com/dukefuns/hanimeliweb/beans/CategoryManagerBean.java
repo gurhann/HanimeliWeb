@@ -56,7 +56,8 @@ public class CategoryManagerBean implements Serializable {
         try {
             categoryDao.delete(FoodCategory.class, (short)id);
             categories = categoryDao.findPagination(FoodCategory.class, 1, 100);
-            serviceBean.init();
+            serviceBean.setCategories(categories);
+          
             this.warn = "<div class=\"alert alert-success\">\n"
                     + "							<strong>Başarılı!</strong> Kategori silindi.\n"
                     + "						</div>";
@@ -99,7 +100,7 @@ public class CategoryManagerBean implements Serializable {
                         + "						</div>";
             }
             category = new FoodCategory();
-            serviceBean.init();
+             serviceBean.setCategories(categories);
         } catch (Exception e) {
             this.warn = "<div class=\"alert alert-danger\">\n"
                     + "					    	<strong>Başarısız!</strong> Beklemediğimiz bir problem yüzünden silme işlemini yapamadınız. Lütfen daha sonra tekrar deneyiniz.\n"

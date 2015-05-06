@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"          
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:metadata>
+            <f:viewAction action="#{registerBean.init()}"></f:viewAction>
+            <f:viewParam name="result" value="#{resultsCache.result}"></f:viewParam>
+        </f:metadata>
+    </h:head>
+    <h:body>
+
+        <ui:composition template="/WEB-INF/assets/masterPage.xhtml">
+            <ui:define name="title">Profil Güncelle</ui:define>
+            <ui:define name="breadcrumbs">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="breadcrumbs">
+                        <p><a href="#">Anasayfa</a> <i class="icons icon-right-dir"></i> Üye Ol</p>
+                    </div>
+                </div>
+            </ui:define>
+            <ui:define name="body">
+                <h:outputText value="#{personManagerBean.result}" escape="false"></h:outputText>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 register-account">
+                        <div class="carousel-heading no-margin">
+                            <h4>Profil Güncelle</h4>
+                        </div>
+                        <div class="page-content">
+                            <h:form id="register-form"  enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <p><strong>Üyelik Bilgileri</strong></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>Avatar</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <div class="iconic-input">
+                                            <p:fileUpload    invalidSizeMessage="Dosya boyutu çok fazla"  fileLimitMessage="10 resimden fazla yüklenemez"  invalidFileMessage="Geçersiz dosya tipi."   label="Dosya Seç"  fileUploadListener="#{personManagerBean.img.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" fileLimit="1" multiple="false" sizeLimit="302400"  dragDropSupport="true"></p:fileUpload>
+                                            </div>
+                                    </div>	
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>Hakkımda </p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h:inputTextarea rows="2" value="#{personManagerBean.person.about}" ></h:inputTextarea>
+                                      
+                                    </div>	
+                                </div>
+                                
+                               
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>Adres </p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h:inputText id="adres" value="#{personManagerBean.person.adres.content}" required="true" requiredMessage="Lütfen adresinizi giriniz."/>
+                                        <h:message  class="alert-span alert-danger" for="adres"></h:message>
+                                    </div>	
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>Şehir</p>
+                                    </div>
+                                    <h:panelGroup id="il-group">
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <h:selectOneMenu class="chosen-select" value="#{registerBean.idCountry}" id="il">
+                                                <f:selectItems  value="#{registerBean.countries}" var="country" itemLabel="#{country.name}" itemValue="#{country.id}"></f:selectItems>
+                                                <f:ajax render="ilce-group" execute="il"  listener="#{registerBean.updateTown}"  ></f:ajax>
+                                            </h:selectOneMenu>
+                                            <h:message  class="alert-span alert-danger" for="il"></h:message>
+                                        </div>	
+                                    </h:panelGroup>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>İlçe</p>
+                                    </div>
+                                    <h:panelGroup id="ilce-group">
+                                        <div  class="col-lg-8 col-md-8 col-sm-8">
+                                            <h:selectOneMenu  class="chosen-select"  value="#{personManagerBean.idtown}"  id="ilceler">
+                                                <f:selectItems id="ilceler1" value="#{registerBean.country.towns}" var="town" itemLabel="#{town.name}" itemValue="#{town.id}"></f:selectItems>
+                                            </h:selectOneMenu>
+                                            <h:message  class="alert-span alert-danger" for="ilceler"></h:message>
+                                        </div>	
+                                    </h:panelGroup>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>Telefon Numarası</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h:inputText id="telno" value="#{personManagerBean.person.telNo}" >
+                                            <f:validator validatorId="com.dukefuns.hanimeliweb.tools.telephonevalidator"></f:validator>
+                                        </h:inputText>
+                                        <h:message  class="alert-span alert-danger" for="telno"></h:message>
+                                    </div>	
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <h:commandButton class="big" action="#{personManagerBean.update()}"  value="Güncelle"/>
+                                        <a class="small_light_white right block black margin-top-40" href="updatepassword.jsf">Parola Güncelle!!</a>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+
+                </div>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>

@@ -63,6 +63,7 @@ public class RegisterBean implements Serializable {
     public void registerUser() {
         try {
             user.getAdres().setTown((Town) tDao.find(Town.class, idtown));
+            user.setAvatarPath("default.jpg");
             pDao.save(user);
         } catch (Exception e) {
             this.result = " <div class=\"col-lg-4 col-md-4 col-sm-4\"></div>\n"

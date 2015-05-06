@@ -6,14 +6,15 @@
 package com.dukefuns.hanimeliweb.tools;
 
 import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.inject.Named;
+
 
 /**
  *
  * @author dcimen
  */
-@Named
+@ManagedBean
 @RequestScoped
 public class ResultsCache implements Serializable {
 

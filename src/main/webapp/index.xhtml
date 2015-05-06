@@ -5,17 +5,20 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:shiro="http://shiro.apache.org/tags">
     <h:head>
-      
+
     </h:head>
     <h:body>
 
         <ui:composition template="/WEB-INF/assets/masterPage.xhtml">
             <ui:define name="title">Anasayfa</ui:define>
+            <ui:define name="footer">
+                <script src="js/jquery-1.11.0.min.js"></script>
+            </ui:define>
             <ui:define name="slider">
                 <ui:include src="/WEB-INF/assets/slider.xhtml"></ui:include> 
             </ui:define>
             <ui:define name="body">
-               
+           
             </ui:define>
         </ui:composition>
 

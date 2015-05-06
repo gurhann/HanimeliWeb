@@ -6,7 +6,6 @@ function include(url){
 }
 
 
-include('twitter/jquery.tweet.js'); // Twitter widget */
 include('js/tinynav.min.js'); // Tiny nav
 
 
@@ -84,14 +83,7 @@ $(document).ready(function(){
 	
 	
 	
-	/* Twitter WIdget */
-	$('#twitter-widget').tweet({
-		modpath: 'twitter/',
-		count: 2,
-		loading_text: 'loading twitter feed...',
-	})
-	
-	
+
 	
 	
 	/* Tooltips */
@@ -321,10 +313,6 @@ $(document).ready(function(){
 		});
 		
 		
-		/* Cloud Zoom */
-		$(".cloud-zoom").imagezoomsl({
-			zoomrange: [3, 3]
-		});
 		
 		
 		/* FancyBox */

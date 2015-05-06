@@ -44,6 +44,8 @@ public class Gallery implements Serializable {
 
     @OneToMany
     private List<Comment> comments;
+    
+    private boolean type;
 
     public Gallery() {
         comments = new ArrayList<>();
@@ -96,6 +98,16 @@ public class Gallery implements Serializable {
     public void addPicture(Picture picture) {
         pictures.add(picture);
     }
+
+    public void setType(boolean type) {
+        this.type = type;
+    }
+
+    public boolean isType() {
+        return type;
+    }
+    
+    
     @Override 
     public int hashCode() {
         int hash = 0;
