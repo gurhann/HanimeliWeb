@@ -78,7 +78,17 @@ public class GenericDaoImp<T> implements GenericDao<T> {
         }
         return query.getResultList();
     }
-
+      @Override
+    public List<T> findNamedQueryInt(String queryName, Class type, HashMap<String, String> hash) {
+        TypedQuery query = this.em.createNamedQuery(queryName, type);
+        if (hash != null && hash.size() > 0) {
+            for (String key : hash.keySet()) {
+                query.setParameter(key, Integer.valueOf(hash.get(key)));
+            }
+        }
+        return query.getResultList();
+    }
+    
     @Override
     public boolean isObjectManaged(T t) {
         return em.contains(t);

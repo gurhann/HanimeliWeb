@@ -37,8 +37,7 @@ public class PersonManagerBean implements Serializable {
     private UploadImage img;
     private short idtown;
     private Person person;
-    private String password;
-    
+    private String password;    
     private String result;
     @ManagedProperty(value = "#{shiroservice}")
     ShiroService servis;

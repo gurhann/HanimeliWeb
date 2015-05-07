@@ -28,6 +28,7 @@ public interface GenericDao<T> {
     public List findPagination(Class type, int start, int finish);
     
     public List<T> findNamedQuery(String queryName, Class type, HashMap<String,String> hash);
+     public List<T> findNamedQueryInt(String queryName, Class type, HashMap<String, String> hash);
     
     public boolean isObjectManaged(T t);
 }

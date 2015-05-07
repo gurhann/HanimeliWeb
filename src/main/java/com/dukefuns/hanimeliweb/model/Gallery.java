@@ -23,8 +23,8 @@ import javax.persistence.OneToOne;
  * @author gurhan
  */
 @NamedQueries({
-    @NamedQuery(name = "Gallery.findGalleriesByUserId",
-            query = "SELECT g FROM Gallery g WHERE g.user.id = :userId")
+    @NamedQuery(name = "Gallery.findKitchenGalleryByUserId",
+            query = "SELECT g FROM Gallery g WHERE g.user.id = :userId AND g.type = 0")
 })
 @Entity
 public class Gallery implements Serializable {

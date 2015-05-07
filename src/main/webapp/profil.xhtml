@@ -26,6 +26,7 @@
 
             </ui:define>
             <ui:define name="body">
+                       <h:outputText value="#{galleryManagerBean.resultGallery}" escape="false"></h:outputText>
                 <div id="product-single">
                     <div class="product-single">
                         <div class="row">
@@ -75,25 +76,26 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">Resim Ekle</h4>
-                            </div>
-                            <div class="modal-body">
-                                <h:form id="register-form"  enctype="multipart/form-data">
+                            </div><h:form id="register-form"  enctype="multipart/form-data">
+
+                                <div class="modal-body">
                                     <div class="row">
-                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="col-lg-1 col-md-1 col-sm-1">
                                             <p>Resim</p>
                                         </div>
-                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <div class="col-lg-11 col-md-11 col-sm-11">
                                             <div class="iconic-input">
-                                                <p:fileUpload class="" invalidSizeMessage="Dosya boyutu çok fazla"  fileLimitMessage="10 resimden fazla yüklenemez" cancelLabel="İptal" invalidFileMessage="Geçersiz dosya tipi."  uploadLabel="Yükle" label="Dosya Seç"  fileUploadListener="#{personManagerBean.img.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" fileLimit="10" multiple="true" sizeLimit="302400" dragDropSupport="true"></p:fileUpload>
+                                                <p:fileUpload class="" invalidSizeMessage="Dosya boyutu çok fazla"  fileLimitMessage="10 resimden fazla yüklenemez" cancelLabel="İptal" invalidFileMessage="Geçersiz dosya tipi."  uploadLabel="Yükle" label="Dosya Seç"  fileUploadListener="#{galleryManagerBean.img.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" fileLimit="10" multiple="true" sizeLimit="3024000" dragDropSupport="true"></p:fileUpload>
                                             </div>
                                         </div>	
                                     </div>
-                                </h:form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">İptal</button>
-                                <button type="button" class="btn btn-primary">Kaydet</button>
-                            </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">İptal</button>
+                                    <h:commandButton  class="btn btn-primary" action="#{galleryManagerBean.kitchenGalleryMultiSave()}" value="Kaydet"></h:commandButton>
+                                </div>
+                            </h:form>
                         </div>
                     </div>
                 </div>
@@ -151,53 +153,7 @@
                     </div>
 
                 </div>
-                <div class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-4">.col-md-4</div>
-                                        <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
-                                        <div class="col-md-2 col-md-offset-4">.col-md-2 .col-md-offset-4</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 col-md-offset-3">.col-md-6 .col-md-offset-3</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            Level 1: .col-sm-9
-                                            <div class="row">
-                                                <div class="col-xs-8 col-sm-6">
-                                                    Level 2: .col-xs-8 .col-sm-6
-                                                </div>
-                                                <div class="col-xs-4 col-sm-6">
-                                                    Level 2: .col-xs-4 .col-sm-6
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
-            </ui:define>
-            <ui:define name="footer">
 
-
-                <script src="js/jquery-1.11.0.min.js"></script>
             </ui:define>
         </ui:composition>
     </h:body>
