@@ -99,8 +99,7 @@ public class UserWebService {
         Gson gson = new GsonBuilder().setExclusionStrategies(new AdresCountyGetTownExclusionStrategy()).create();
         if (p != null) {
             System.out.println(p.getName());
-            System.out.println(p.getEmail());
-            
+            System.out.println(p.getEmail());            
             System.out.println(gson.toJson(p));
             m.setResult(true);
             m.setContent("Bu " + s + " Sistemde Kayıt.");

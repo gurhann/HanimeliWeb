@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:metadata>
+            <f:viewParam name="name" value="#{personServiceBean.username}"></f:viewParam>
+            <f:viewAction action="#{personServiceBean.init}"></f:viewAction>
+            <f:viewAction action="#{galleryServiceBean.init}"></f:viewAction>
+        </f:metadata>
+    </h:head>
+    <h:body>
+
+        <ui:composition template="/WEB-INF/assets/masterPage.xhtml">
+            <ui:define name="head">
+                <link rel="stylesheet" href="css/jquery.fancybox.css"/></ui:define>>
+            <ui:define name="title">Mutfak</ui:define>
+            <ui:define name="breadcrumbs">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="breadcrumbs">
+                        <p><a href="#">Anasayfa</a> <i class="icons icon-right-dir"></i> Mutfak <h:outputText value="#{personServiceBean.person.username}"></h:outputText></p>
+                    </div>
+                </div>
+            </ui:define>
+            <ui:define name="body">
+                <h:outputText value="#{galleryManagerBean.resultGallery}" escape="false"></h:outputText>
+                <div id="product-single">
+                    <div class="product-single">
+                        <div class="row">
+                            <ui:fragment rendered="#{not(personServiceBean.person eq null)}" >
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="tabs">
+                                        <div class="tab-heading margin-heading">
+                                            <a href="#tab1" class="button big">Yemek Listesi</a>
+                                            <a href="#tab2" class="button big">Siparişler</a>
+                                            <a href="#tab3" class="button green big">Yemek Ekle</a>
+                                        </div>
+                                        <div class="tab-content no-padding">
+                                            <div id="tab1">
+                                                <table class="orderinfo-table">
+
+                                                    <tr>
+                                                        <th style="width: 100px">ID</th>
+                                                        <th>Adı</th>
+                                                        <th>Kategorisi</th>
+                                                        <th style="width: 100px">Süre</th>
+                                                        <th>İşlemler</th>
+                                                    </tr> 
+                                                    <tr>
+                                                        <td>1241254</td>
+                                                        <td>Lorem ipsum dolor sit amet</td>
+                                                        <td>Confirmed by shipper</td>
+                                                        <td>100 dk</td>
+                                                        <td>$190.00</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div id="tab2">
+                                                tab2
+                                            </div>
+                                            <div id="tab3">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 register-account">
+                                                    <div class="page-content">
+                                                        <div class="row">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                <p><strong>Yemek Detayları</strong></p>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                                                <p>Adı*</p>
+                                                            </div>
+                                                            <div class="col-lg-9 col-md-9 col-sm-9">
+                                                                <input type="text"/>
+                                                            </div>	
+                                                        </div>
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                                                <p>Tanıtımı*</p>
+                                                            </div>
+                                                            <div class="col-lg-9 col-md-9 col-sm-9">
+                                                                <input type="text"/>
+                                                            </div>	
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                                                <p>Malzemeler*</p>
+                                                            </div>
+                                                            <div class="col-lg-9 col-md-9 col-sm-9">
+                                                                <input type="text"/>
+                                                            </div>	
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                                                <p>Resimler*</p>
+                                                            </div>
+                                                            <div class="col-lg-9 col-md-9 col-sm-9">
+                                                                <input type="text"/>
+                                                            </div>	
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                                                <p>Kategori*</p>
+                                                            </div>
+                                                            <div class="col-lg-9 col-md-9 col-sm-9">
+                                                                <input type="text"/>
+                                                            </div>	
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                                                <p>Kategori*</p>
+                                                            </div>
+                                                            <div class="col-lg-9 col-md-9 col-sm-9">
+                                                                <input type="text"/>
+                                                            </div>	
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                <input class="big" type="submit" value="Register"/>
+                                                                <input class="big" type="reset" value="Cancel"/>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ui:fragment>
+                            <ui:fragment rendered="#{(personServiceBean.username eq null)or (personServiceBean.person eq null)}">
+                                <div class="col-lg-7 col-md-7 col-sm-7">
+                                    <h2>Üzgünüm kimseyi bulamadım ben :( </h2>
+                                </div>
+                            </ui:fragment>
+                        </div>
+                    </div>
+                </div>
+                <ui:fragment rendered="#{shiroservice.person.id eq galleryServiceBean.kithckengallery.user.id}">
+                    <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Resim Ekle</h4>
+                                </div><h:form id="register-form"  enctype="multipart/form-data">
+
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-1 col-md-1 col-sm-1">
+                                                <p>Resim</p>
+                                            </div>
+                                            <div class="col-lg-11 col-md-11 col-sm-11">
+                                                <div class="iconic-input">
+                                                    <p:fileUpload class="" invalidSizeMessage="Dosya boyutu çok fazla"  fileLimitMessage="10 resimden fazla yüklenemez" cancelLabel="İptal" invalidFileMessage="Geçersiz dosya tipi."  uploadLabel="Yükle" label="Dosya Seç"  fileUploadListener="#{galleryManagerBean.img.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" fileLimit="10" multiple="true" sizeLimit="3024000" dragDropSupport="true"></p:fileUpload>
+                                                </div>
+                                            </div>	
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">İptal</button>
+                                        <h:commandButton  class="btn btn-primary" action="#{galleryManagerBean.kitchenGalleryMultiSave()}" value="Kaydet"></h:commandButton>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </ui:fragment>
+            </ui:define>
+            <ui:define name="sidebar">
+                <div class="products-row row">                    
+                    <div class="carousel-heading">
+                        <h4>Mutfak 
+                            <ui:fragment rendered="#{shiroservice.person.id eq galleryServiceBean.kithckengallery.user.id}"><a href="" class="small_light_white right block white" style="font-size: 70%; margin-top: 5px;;" data-toggle="modal" data-target="#myModal">Resim ekle</a></ui:fragment> </h4>                       
+                    </div>            
+                    <div id="product-slider">
+                        <ul class="slides">
+                            <li>
+                                <ui:fragment rendered="#{not(galleryServiceBean.kithckengallery.pictures.size()eq 0)}"  >
+                                    <img class="cloud-zoom kitchenimg" src="img/#{galleryServiceBean.kithckengallery.pictures.get(0).path}" data-large="img/#{galleryServiceBean.kithckengallery.pictures.get(0)}" alt="" />
+                                    <a class="fullscreen-button" href="img/#{galleryServiceBean.kithckengallery.pictures.get(0).path}">
+                                        <div class="product-fullscreen">
+                                            <i class="icons icon-resize-full-1"></i>
+                                        </div>
+                                    </a>
+                                </ui:fragment>
+                                <ui:fragment rendered="#{galleryServiceBean.kithckengallery.pictures.size()eq 0}"  >
+                                    <img class="cloud-zoom kitchenimg" src="img/fff.jpg" data-large="img/fff.jpg" alt="" />
+                                    <a class="fullscreen-button" href="img/fff.jpg">
+                                        <div class="product-fullscreen">
+                                            <i class="icons icon-resize-full-1"></i>
+                                        </div>
+                                    </a>
+                                </ui:fragment>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="product-carousel">
+                        <ul class="slides">
+                            <ui:repeat value="#{galleryServiceBean.kithckengallery.pictures}" var="pictures">
+                                <li>
+                                    <a class="fancybox" rel="product-images" href="img/#{pictures.path}"></a>
+                                    <img src="img/#{pictures.path}"  data-large="img/#{pictures.path}" alt=""/>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                        <div class="product-arrows">
+                            <div class="left-arrow">
+                                <i class="icons icon-left-dir"></i>
+                            </div>
+                            <div class="right-arrow">
+                                <i class="icons icon-right-dir"></i>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -44,6 +44,12 @@ public class Food implements Serializable {
     
     private String description;
     
+    @Column(columnDefinition="Decimal(10,2)")
+    private double price;
+    
+    @Column(length = 50)
+    private String quantity;
+    
     @OneToOne
     private Person user;
     
@@ -119,7 +125,23 @@ public class Food implements Serializable {
     public void addComment(Comment comment){
         comments.add(comment);
     }
- 
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+          
     @Override
     public int hashCode() {
         int hash = 0;

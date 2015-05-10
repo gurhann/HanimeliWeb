@@ -5,7 +5,7 @@
  */
 package com.dukefuns.hanimeliweb.shiro;
 
-import com.dukefuns.hanimeliweb.beans.PersonManagerBean;
+import com.dukefuns.hanimeliweb.beans.PersonServiceBean;
 import com.dukefuns.hanimeliweb.dao.PersonDao;
 import com.dukefuns.hanimeliweb.model.Person;
 import java.io.Serializable;
@@ -36,6 +36,8 @@ public class ShiroService implements Serializable {
     private Person person;
     @EJB
     PersonDao personDao;
+    @ManagedProperty("#{personServiceBean}")
+    PersonServiceBean pService;
     
     public ShiroService() {
 
@@ -49,7 +51,7 @@ public class ShiroService implements Serializable {
             user.login(token);
             returnPage = "/index.jsf?faces-redirect=true";
             person = personDao.findUserByUserName(username);
-         
+            pService.setPerson(person);
        
         } catch (UnknownAccountException | IncorrectCredentialsException uae) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Giriş başarısız!! Lütfen kullanıcı adınızı veya parolanızı kontrol ediniz.", "Bu kullanıcı geçersiz yada tanımlı değil."));
@@ -101,6 +103,14 @@ public class ShiroService implements Serializable {
         this.person = person;
     }
 
+    public PersonServiceBean getpService() {
+        return pService;
+    }
+
+    public void setpService(PersonServiceBean pService) {
+        this.pService = pService;
+    }
+    
    
 
 }

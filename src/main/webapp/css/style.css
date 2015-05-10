@@ -2773,6 +2773,7 @@ span.action-name{
     background:#34495e!important;
     text-decoration:none;
 }
+.tab-heading a.button.green.active{background: #2ecc71;}
 
 .tab-content{
     background:#fff;
@@ -3265,6 +3266,8 @@ a.button.big{
     padding:15px 30px;
     height:50px;
 }
+
+
 
 a.button.small{
     padding:5px 15px;
@@ -5129,3 +5132,4 @@ input[type="checkbox"]:checked + label:before{
 .right{float:right;}
 .white{color:#fff;}
 .margin-top-40{margin-top: 40px;}
+.kitchenimg{height: 250px !important; width: 300px !important;}

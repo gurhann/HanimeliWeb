@@ -12,6 +12,7 @@ import com.dukefuns.hanimeliweb.dao.TownDao;
 import com.dukefuns.hanimeliweb.model.Country;
 import com.dukefuns.hanimeliweb.model.Gallery;
 import com.dukefuns.hanimeliweb.model.Person;
+import com.dukefuns.hanimeliweb.model.Picture;
 import com.dukefuns.hanimeliweb.model.Town;
 import java.io.Serializable;
 import java.util.List;
@@ -70,7 +71,7 @@ public class RegisterBean implements Serializable {
             gallery.setName("Mutfak");
             gallery.setType(false);
             pDao.save(user);
-            gallery.setUser(user);
+             gallery.setUser(user);
             gDao.save(gallery);
         } catch (Exception e) {
             this.result = " <div class=\"col-lg-4 col-md-4 col-sm-4\"></div>\n"

@@ -9,6 +9,7 @@
         <f:metadata>
             <f:viewParam name="name" value="#{personServiceBean.username}"></f:viewParam>
             <f:viewAction action="#{personServiceBean.init}"></f:viewAction>
+            <f:viewAction action="#{galleryServiceBean.init}"></f:viewAction>
         </f:metadata>
     </h:head>
     <h:body>
@@ -26,18 +27,18 @@
 
             </ui:define>
             <ui:define name="body">
-                       <h:outputText value="#{galleryManagerBean.resultGallery}" escape="false"></h:outputText>
+                <h:outputText value="#{galleryManagerBean.resultGallery}" escape="false"></h:outputText>
                 <div id="product-single">
                     <div class="product-single">
                         <div class="row">
                             <ui:fragment rendered="#{not(personServiceBean.person eq null)}" >
-                                <div class="col-lg-4 col-md-4 col-sm-4 product-single-image">
+                                <div class="col-lg-3 col-md-4 col-sm-4 product-single-image">
 
 
                                     <h:graphicImage value="img/#{personServiceBean.person.avatarPath}" style="display: inline; visibility: visible;"></h:graphicImage>                                                
 
                                 </div>
-                                <div class="col-lg-7 col-md-7 col-sm-7 product-single-info">
+                                <div class="col-lg-9 col-md-7 col-sm-7 product-single-info" style="padding-right: 25px;">
                                     <h2><h:outputText value="#{personServiceBean.person.name} #{personServiceBean.person.lastname}"></h:outputText> <a class="smalla" href="updateprofil.jsf">Profil Güncelle</a></h2>
                                     <div class="rating-box">
                                         <span>Müşteri Memnuniyeti </span>
@@ -70,76 +71,74 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Resim Ekle</h4>
-                            </div><h:form id="register-form"  enctype="multipart/form-data">
+                <ui:fragment rendered="#{shiroservice.person.id eq galleryServiceBean.kithckengallery.user.id}">
+                    <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Resim Ekle</h4>
+                                </div><h:form id="register-form"  enctype="multipart/form-data">
 
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-lg-1 col-md-1 col-sm-1">
-                                            <p>Resim</p>
-                                        </div>
-                                        <div class="col-lg-11 col-md-11 col-sm-11">
-                                            <div class="iconic-input">
-                                                <p:fileUpload class="" invalidSizeMessage="Dosya boyutu çok fazla"  fileLimitMessage="10 resimden fazla yüklenemez" cancelLabel="İptal" invalidFileMessage="Geçersiz dosya tipi."  uploadLabel="Yükle" label="Dosya Seç"  fileUploadListener="#{galleryManagerBean.img.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" fileLimit="10" multiple="true" sizeLimit="3024000" dragDropSupport="true"></p:fileUpload>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-1 col-md-1 col-sm-1">
+                                                <p>Resim</p>
                                             </div>
-                                        </div>	
-                                    </div>
+                                            <div class="col-lg-11 col-md-11 col-sm-11">
+                                                <div class="iconic-input">
+                                                    <p:fileUpload class="" invalidSizeMessage="Dosya boyutu çok fazla"  fileLimitMessage="10 resimden fazla yüklenemez" cancelLabel="İptal" invalidFileMessage="Geçersiz dosya tipi."  uploadLabel="Yükle" label="Dosya Seç"  fileUploadListener="#{galleryManagerBean.img.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" fileLimit="10" multiple="true" sizeLimit="3024000" dragDropSupport="true"></p:fileUpload>
+                                                </div>
+                                            </div>	
+                                        </div>
 
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">İptal</button>
-                                    <h:commandButton  class="btn btn-primary" action="#{galleryManagerBean.kitchenGalleryMultiSave()}" value="Kaydet"></h:commandButton>
-                                </div>
-                            </h:form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">İptal</button>
+                                        <h:commandButton  class="btn btn-primary" action="#{galleryManagerBean.kitchenGalleryMultiSave()}" value="Kaydet"></h:commandButton>
+                                    </div>
+                                </h:form>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </ui:fragment>
             </ui:define>
             <ui:define name="sidebar">
                 <div class="products-row row">                    
                     <div class="carousel-heading">
                         <h4>Mutfak 
-                            <a href="" class="small_light_white right block white" style="font-size: 70%; margin-top: 5px;;" data-toggle="modal" data-target="#myModal">Resim ekle</a></h4>                       
+                            <ui:fragment rendered="#{shiroservice.person.id eq galleryServiceBean.kithckengallery.user.id}"><a href="" class="small_light_white right block white" style="font-size: 70%; margin-top: 5px;;" data-toggle="modal" data-target="#myModal">Resim ekle</a></ui:fragment> </h4>                       
                     </div>            
                     <div id="product-slider">
                         <ul class="slides">
                             <li>
-                                <img class="cloud-zoom" src="img/products/single1.jpg" data-large="img/products/sample1.jpg" alt="" />
-                                <a class="fullscreen-button" href="img/products/single1.jpg">
+                                <ui:fragment rendered="#{not(galleryServiceBean.kithckengallery.pictures.size()eq 0)}"  >
+                                <img class="cloud-zoom kitchenimg" src="img/#{galleryServiceBean.kithckengallery.pictures.get(0).path}" data-large="img/#{galleryServiceBean.kithckengallery.pictures.get(0)}" alt="" />
+                                <a class="fullscreen-button" href="img/#{galleryServiceBean.kithckengallery.pictures.get(0).path}">
                                     <div class="product-fullscreen">
                                         <i class="icons icon-resize-full-1"></i>
                                     </div>
                                 </a>
+                                </ui:fragment>
+                                 <ui:fragment rendered="#{galleryServiceBean.kithckengallery.pictures.size()eq 0}"  >
+                                <img class="cloud-zoom kitchenimg" src="img/fff.jpg" data-large="img/fff.jpg" alt="" />
+                                <a class="fullscreen-button" href="img/fff.jpg">
+                                    <div class="product-fullscreen">
+                                        <i class="icons icon-resize-full-1"></i>
+                                    </div>
+                                </a>
+                                </ui:fragment>
                             </li>
                         </ul>
                     </div>
                     <div id="product-carousel">
                         <ul class="slides">
-                            <li>
-                                <a class="fancybox" rel="product-images" href="img/products/single1.jpg"></a>
-                                <img src="img/products/single1.jpg" data-large="img/products/single1.jpg" alt=""/>
-                            </li>
-                            <li>
-                                <a class="fancybox" rel="product-images" href="img/products/single2.jpg"></a>
-                                <img src="img/products/single2.jpg" data-large="img/products/single2.jpg" alt="" />
-                            </li>
-                            <li>
-                                <a class="fancybox" rel="product-images" href="img/products/single3.jpg"></a>
-                                <img src="img/products/single3.jpg" data-large="img/products/single3.jpg" alt="" />
-                            </li>
-                            <li>
-                                <a class="fancybox" rel="product-images" href="img/products/single4.jpg"></a>
-                                <img src="img/products/single4.jpg" data-large="img/products/single4.jpg" alt="" />
-                            </li>
-                            <li>
-                                <a class="fancybox" rel="product-images" href="img/products/single5.jpg"></a>
-                                <img src="img/products/single5.jpg" data-large="img/products/single5.jpg" alt="" />
-                            </li>
+                            <ui:repeat value="#{galleryServiceBean.kithckengallery.pictures}" var="pictures">
+                                <li>
+                                    <a class="fancybox" rel="product-images" href="img/#{pictures.path}"></a>
+                                    <img src="img/#{pictures.path}"  data-large="img/#{pictures.path}" alt=""/>
+                                </li>
+                            </ui:repeat>
                         </ul>
                         <div class="product-arrows">
                             <div class="left-arrow">

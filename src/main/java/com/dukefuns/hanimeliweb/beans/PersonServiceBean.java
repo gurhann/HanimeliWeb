@@ -21,25 +21,23 @@ import javax.faces.bean.SessionScoped;
 public class PersonServiceBean implements Serializable {
 
     private String username;
-    private Person person;   
-    
+    private Person person;
+
     @EJB
     PersonDao personDao;
-  
 
     public PersonServiceBean() {
 
     }
-    
-    
+
     public void init() {
         if (username != null) {
             person = personDao.findUserByUserName(username);
+          
         } else {
             person = null;
         }
     }
-
 
     public Person getPerson() {
         return person;
@@ -56,10 +54,5 @@ public class PersonServiceBean implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
-
-
-    
-
-   
 
 }
