@@ -3101,11 +3101,10 @@ a .banner-item{
     background:#f7f7f7;
     font-size:14px;
 }
-
+.page-content select{height: 42px;}
 .page-content textarea{
     width:100%;
     background:#f7f7f7;
-    height:200px;
     border:1px solid #e6e6e6;
     font-size:14px;
 }
@@ -5132,4 +5131,8 @@ input[type="checkbox"]:checked + label:before{
 .right{float:right;}
 .white{color:#fff;}
 .margin-top-40{margin-top: 40px;}
+.margin-right-10{margin-right: 10px; }
 .kitchenimg{height: 250px !important; width: 300px !important;}
+.ui-inputfield, .ui-widget-content .ui-inputfield, .ui-widget-header .ui-inputfield{  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+   box-shadow: none !important; }

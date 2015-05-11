@@ -21,19 +21,17 @@ import javax.persistence.OneToOne;
 public class QuantityPrice implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @OneToOne
-    private Food food;
+
     
     @Column(length = 50)
     private String quantity;
-    
-    @Column(length = 50)
-    private String price;
+
+    @Column(columnDefinition = "Decimal(10,2)")
+    private double price;
 
     public Long getId() {
         return id;
@@ -43,13 +41,7 @@ public class QuantityPrice implements Serializable {
         this.id = id;
     }
 
-    public Food getFood() {
-        return food;
-    }
-
-    public void setFood(Food food) {
-        this.food = food;
-    }
+    
 
     public String getQuantity() {
         return quantity;
@@ -59,11 +51,11 @@ public class QuantityPrice implements Serializable {
         this.quantity = quantity;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

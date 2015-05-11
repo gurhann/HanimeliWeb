@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+    </h:head>
+    <h:body>
+
+        <ui:composition template="/WEB-INF/assets/masterPage.xhtml">
+            <ui:define name="head">
+                <link rel="stylesheet" href="css/jquery.fancybox.css"/></ui:define>>
+            <ui:define name="title">Yemek</ui:define>
+            <ui:define name="breadcrumbs">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="breadcrumbs">
+                        <p><a href="#">Anasayfa</a> <i class="icons icon-right-dir"></i> Yemek<h:outputText value=""></h:outputText></p>
+                    </div>
+                </div>
+
+            </ui:define>
+            <ui:define name="body">
+                <h:outputText value="" escape="false"></h:outputText>
+                <div id="product-single">
+                    <div class="product-single">
+                        <div class="row">
+                            <!-- Product Images Carousel -->
+                            <div class="col-lg-5 col-md-5 col-sm-5 product-single-image">
+
+                                <div id="product-slider">
+                                    <ul class="slides">
+                                        <li>
+                                            <img class="cloud-zoom" src="img/products/single1.jpg" data-large="img/products/sample1.jpg" alt="" />
+                                            <a class="fullscreen-button" href="img/products/single1.jpg">
+                                                <div class="product-fullscreen">
+                                                    <i class="icons icon-resize-full-1"></i>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="product-carousel">
+                                    <ul class="slides">
+                                        <li>
+                                            <a class="fancybox" rel="product-images" href="img/products/single1.jpg"></a>
+                                            <img src="img/products/single1.jpg" data-large="img/products/single1.jpg" alt=""/>
+                                        </li>
+                                        <li>
+                                            <a class="fancybox" rel="product-images" href="img/products/single2.jpg"></a>
+                                            <img src="img/products/single2.jpg" data-large="img/products/single2.jpg" alt="" />
+                                        </li>
+                                        <li>
+                                            <a class="fancybox" rel="product-images" href="img/products/single3.jpg"></a>
+                                            <img src="img/products/single3.jpg" data-large="img/products/single3.jpg" alt="" />
+                                        </li>
+                                        <li>
+                                            <a class="fancybox" rel="product-images" href="img/products/single4.jpg"></a>
+                                            <img src="img/products/single4.jpg" data-large="img/products/single4.jpg" alt="" />
+                                        </li>
+                                        <li>
+                                            <a class="fancybox" rel="product-images" href="img/products/single5.jpg"></a>
+                                            <img src="img/products/single5.jpg" data-large="img/products/single5.jpg" alt="" />
+                                        </li>
+                                    </ul>
+                                    <div class="product-arrows">
+                                        <div class="left-arrow">
+                                            <i class="icons icon-left-dir"></i>
+                                        </div>
+                                        <div class="right-arrow">
+                                            <i class="icons icon-right-dir"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Product Images Carousel -->
+                            <div class="col-lg-7 col-md-7 col-sm-7 product-single-info">
+
+                                <h2>Lorem ipsum dolor sit amet</h2>
+                                <div class="rating-box">
+                                    <div class="rating readonly-rating" data-score="4"></div>
+                                    <span>3 Review(s)</span>
+                                </div>
+                                <table>
+                                    <tr>
+                                        <td>Manufacturer</td>
+                                        <td><a href="#">Manufacturer 1</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Availability</td>
+                                        <td><span class="green">in stock</span> 20 items</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Product code</td>
+                                        <td>PBS173</td>
+                                    </tr>
+                                </table>
+
+                                <strong>Product Dimensions</strong>
+                                <table>
+                                    <tr>
+                                        <td>Product Width</td>
+                                        <td>10.00000M</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Product Length</td>
+                                        <td>10.00000M</td>
+                                    </tr>
+                                </table>
+
+                                <span class="price"><del>$381.00</del> $281.00</span>
+
+                                <table class="product-actions-single">
+                                    <tr>
+                                        <td>Color:</td>
+                                        <td>
+                                            <select class="chosen-select">
+                                                <option>Red +$25.00</option>
+                                                <option>Red +$25.00</option>
+                                                <option>Red +$25.00</option>
+                                                <option>Red +$25.00</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Quantity:</td>
+                                        <td>
+                                            <div class="numeric-input">
+                                                <input type="text" value="1"/>
+                                                <span class="arrow-up"><i class="icons icon-up-dir"></i></span>
+                                                <span class="arrow-down"><i class="icons icon-down-dir"></i></span>
+                                            </div>
+                                            <a href="#">
+                                                <span class="add-to-cart">
+                                                    <span class="action-wrapper">
+                                                        <i class="icons icon-basket-2"></i>
+                                                        <span class="action-name">Add to cart</span>
+                                                    </span >
+                                                </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table> 
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                    <div class="tabs">
+
+                                        <div class="tab-heading">
+                                            <a href="#tab1" class="button big">Description</a>
+                                            <a href="#tab2" class="button big">Comments</a>
+                                        </div>
+
+                                        <div class="page-content tab-content">
+
+                                            <div id="tab1">
+                                                <p>Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus. Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque. Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse sollicitudin velit sed leo. </p>
+
+                                                <p><strong>Specifications:</strong></p>
+                                                <ul>
+                                                    <li><i class="icons icon-right-dir"></i> Speaker type: Hi-Definition MicroSpeaker</li>
+                                                    <li><i class="icons icon-right-dir"></i> Frequency range: 25Hz-18.5kHz</li>
+                                                    <li><i class="icons icon-right-dir"></i> Impedance (1kHz): 26 Ohms</li>
+                                                    <li><i class="icons icon-right-dir"></i> Sensitivity (1mW): 114 dB SPL/mW</li>
+                                                    <li><i class="icons icon-right-dir"></i> Cable length (with extension): 18.0 in./45.0 cm (54.0 in./137.1 cm)</li>
+                                                </ul>
+
+                                                <p>Ut pharetra augue nec augue. Nam elit agna,endrerit sit amet, tincidunt ac, viverra sed, nulla. Donec porta diam eu massa. Quisque diam lorem, interdum vitae,dapibus ac, scelerisque vitae, pede. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus. <br/><br/>
+                                                    Ut pharetra augue nec augue. Nam elit agna,endrerit sit amet, tincidunt ac, viverra sed, nulla. Donec porta diam eu massa. Quisque diam lorem, interdum vitae,dapibus ac, scelerisque vitae, pede. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus. </p>
+                                                <p class="tags home-green"><strong>Tags:</strong> <a href="#" class="tag-item">digital camera</a>
+                                                    <a href="#" class="tag-item">lorem</a>
+                                                    <a href="#" class="tag-item">gps</a></p>
+                                            </div>
+
+                                         
+
+                                            <div id="tab2">
+                                                <ul class="comments">
+                                                    <li>
+                                                        <p><strong><a href="#">Anna Doe</a></strong></p>
+                                                        <span class="date">2013-10-09 09:23</span>
+                                                        <i class="icons icon-reply"></i>
+                                                        <p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque.</p>
+
+                                                    </li>
+                                                    <li>
+                                                        <p><strong><a href="#">Anna Doe</a></strong></p>
+                                                        <span class="date">2013-10-09 09:23</span>
+                                                        <i class="icons icon-reply"></i>
+                                                        <p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque.</p>
+
+                                                        <ul>
+                                                            <li>
+                                                                <p><strong><a href="#">Anna Doe</a></strong></p>
+                                                                <p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque.</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <p><strong><a href="#">Anna Doe</a></strong></p>
+                                                        <span class="date">2013-10-09 09:23</span>
+                                                        <i class="icons icon-reply"></i>
+                                                        <p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque.</p>
+                                                    </li>
+                                                </ul>
+                                                <a href="#" class="button home-green"><i class="icons icon-spinner"></i> Refresh comments list</a>
+                                                <a href="#" class="button orange"><i class="icons icon-rss"></i> RSS feed for comments to this post</a>
+                                                <br/><br/>
+                                                <div class="row">
+
+                                                    <div class="col-lg-6 col-md-6 col-sm-8">
+                                                        <h3>ADD A COMMENT</h3>
+                                                        <label>Name (required)</label>
+                                                        <input type="text"/>
+                                                        <br/><br/>
+                                                        <label>E-mail (required, but will not display)</label>
+                                                        <input type="text"/>
+                                                        <br/><br/>
+                                                        <label>Website (required)</label>
+                                                        <input type="text"/>
+                                                        <br/><br/>
+                                                        <label>Comment (required)</label>
+                                                        <textarea></textarea>
+                                                        <br/><br/>
+                                                        <input id="comments-checkbox" type="checkbox"/><label for="comments-checkbox">Notify me of follow-up comments</label>
+                                                        <br/><br/>
+                                                        <img src="img/captcha.jpg" alt=""/>
+                                                        <br/><br/>
+                                                        <div class="row">
+
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <label><a href="#">Refresh</a></label>
+                                                                <input type="text"/>
+                                                            </div>
+
+                                                        </div>
+                                                        <br/>
+                                                        <input type="submit" value="Submit comment" class="dark-blue big"/>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </ui:define>
+            <ui:define name="sidebar">
+
+
+            </ui:define>
+            <ui:define name="footer">
+                <script src="js/jquery-1.11.0.min.js"></script>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

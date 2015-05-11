@@ -44,20 +44,20 @@ public class Food implements Serializable {
     
     private String description;
     
-    @Column(columnDefinition="Decimal(10,2)")
-    private double price;
-    
-    @Column(length = 50)
-    private String quantity;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Gallery gallery;
+   
     
     @OneToOne
     private Person user;
-    
+    @OneToOne(cascade = CascadeType.ALL)
+    private QuantityPrice quantityPrice;
     @ManyToOne(targetEntity = FoodCategory.class, cascade = CascadeType.PERSIST)
     private FoodCategory foodCategory;
     
     private String materials;
-    private short preparationTime;
+    @Column(columnDefinition = "char(6)")
+    private String preparationTime;
     
     @OneToMany
     private List<Comment> comments;
@@ -98,11 +98,11 @@ public class Food implements Serializable {
         this.materials = materials;
     }
 
-    public short getPreparationTime() {
+    public String getPreparationTime() {
         return preparationTime;
     }
 
-    public void setPreparationTime(short preparationTime) {
+    public void setPreparationTime(String preparationTime) {
         this.preparationTime = preparationTime;
     }
 
@@ -126,22 +126,23 @@ public class Food implements Serializable {
         comments.add(comment);
     }
 
-    public double getPrice() {
-        return price;
+    public QuantityPrice getQuantityPrice() {
+        return quantityPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setQuantityPrice(QuantityPrice quantityPrice) {
+        this.quantityPrice = quantityPrice;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public Gallery getGallery() {
+        return gallery;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public void setGallery(Gallery gallery) {
+        this.gallery = gallery;
     }
-          
+
+    
     @Override
     public int hashCode() {
         int hash = 0;

@@ -27,6 +27,7 @@
             </ui:define>
             <ui:define name="body">
                 <h:outputText value="#{galleryManagerBean.resultGallery}" escape="false"></h:outputText>
+                <h:outputText value="#{foodManagerBean.resultFood}" escape="false"></h:outputText>
                 <div id="product-single">
                     <div class="product-single">
                         <div class="row">
@@ -40,90 +41,140 @@
                                         </div>
                                         <div class="tab-content no-padding">
                                             <div id="tab1">
-                                                <table class="orderinfo-table">
+                                                <ui:fragment rendered="#{foodServiceBean.foodList eq null}">
 
-                                                    <tr>
-                                                        <th style="width: 100px">ID</th>
-                                                        <th>Adı</th>
-                                                        <th>Kategorisi</th>
-                                                        <th style="width: 100px">Süre</th>
-                                                        <th>İşlemler</th>
-                                                    </tr> 
-                                                    <tr>
-                                                        <td>1241254</td>
-                                                        <td>Lorem ipsum dolor sit amet</td>
-                                                        <td>Confirmed by shipper</td>
-                                                        <td>100 dk</td>
-                                                        <td>$190.00</td>
-                                                    </tr>
-                                                </table>
+                                                    <h2>Henüz yemek girilmemiş :(</h2>
+                                                </ui:fragment>
+                                                <ui:fragment rendered="#{not(foodServiceBean.foodList eq null)}">
+                                                    <table class="orderinfo-table">
+
+                                                        <tr>
+                                                            <th style="width: 100px">ID</th>
+                                                            <th>Adı</th>
+                                                            <th>Kategorisi</th>
+                                                            <th style="width: 100px">Süre</th>
+                                                            <th style="width: 100px">İşlemler</th>
+                                                        </tr>
+                                                        <h:form>
+                                                            <ui:repeat var="food" value="#{foodServiceBean.foodList}">
+                                                                <tr>
+                                                                    <td>#{food.id}</td>
+                                                                    <td><h:outputText value="#{food.name}" ></h:outputText></td>
+                                                                    <td>#{food.foodCategory.name}</td>
+                                                                    <td><h:outputText value="#{food.preparationTime}"></h:outputText></td>
+                                                                    <td><h:commandLink class="red margin-right-10 left"  action="#{foodManagerBean.delete(food)}" value="Sil"></h:commandLink><a href="" class="green">Düzenle</a></td>
+                                                                </tr>
+                                                            </ui:repeat>
+                                                        </h:form>
+                                                    </table>
+                                                </ui:fragment>
                                             </div>
                                             <div id="tab2">
                                                 tab2
                                             </div>
                                             <div id="tab3">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 register-account">
-                                                    <div class="page-content">
-                                                        <div class="row">
-                                                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                                                <p><strong>Yemek Detayları</strong></p>
-                                                            </div>
-                                                            <div class="col-lg-3 col-md-3 col-sm-3">
-                                                                <p>Adı*</p>
-                                                            </div>
-                                                            <div class="col-lg-9 col-md-9 col-sm-9">
-                                                                <input type="text"/>
-                                                            </div>	
-                                                        </div>
-                                                        
-                                                        <div class="row">
-                                                            <div class="col-lg-3 col-md-3 col-sm-3">
-                                                                <p>Tanıtımı*</p>
-                                                            </div>
-                                                            <div class="col-lg-9 col-md-9 col-sm-9">
-                                                                <input type="text"/>
-                                                            </div>	
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-3 col-md-3 col-sm-3">
-                                                                <p>Malzemeler*</p>
-                                                            </div>
-                                                            <div class="col-lg-9 col-md-9 col-sm-9">
-                                                                <input type="text"/>
-                                                            </div>	
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-3 col-md-3 col-sm-3">
-                                                                <p>Resimler*</p>
-                                                            </div>
-                                                            <div class="col-lg-9 col-md-9 col-sm-9">
-                                                                <input type="text"/>
-                                                            </div>	
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-3 col-md-3 col-sm-3">
-                                                                <p>Kategori*</p>
-                                                            </div>
-                                                            <div class="col-lg-9 col-md-9 col-sm-9">
-                                                                <input type="text"/>
-                                                            </div>	
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-3 col-md-3 col-sm-3">
-                                                                <p>Kategori*</p>
-                                                            </div>
-                                                            <div class="col-lg-9 col-md-9 col-sm-9">
-                                                                <input type="text"/>
-                                                            </div>	
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                                                <input class="big" type="submit" value="Register"/>
-                                                                <input class="big" type="reset" value="Cancel"/>
+                                                    <h:form  enctype="multipart/form-data">
+                                                        <div class="page-content">
+                                                            <div class="row">
+                                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                    <p><strong>Yemek Detayları</strong></p>
+                                                                </div>
+                                                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                                                    <p>Adı*</p>
+                                                                </div>
+                                                                <div class="col-lg-10 col-md-10 col-sm-10">
+                                                                    <h:inputText id="foodname" value="#{foodManagerBean.food.name}" required="true" requiredMessage="Lütfen yemek isminin giriniz."/>
+                                                                    <h:message  class="alert-span alert-danger" for="foodname"></h:message>
+                                                                </div>	
+
                                                             </div>
 
+                                                            <div class="row">
+                                                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                                                    <p>Tanıtımı</p>
+                                                                </div>
+                                                                <div class="col-lg-10 col-md-10 col-sm-10">
+                                                                    <h:inputTextarea rows="2" value="#{foodManagerBean.food.description}"/>
+                                                                </div>	
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                                                    <p>Malzemeler</p>
+                                                                </div>
+                                                                <div class="col-lg-10 col-md-10 col-sm-10">
+                                                                    <h:inputTextarea rows="4" value="#{foodManagerBean.food.materials}"/>
+                                                                </div>	
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                                                    <p>Resimler</p>
+                                                                </div>
+                                                                <div class="col-lg-10 col-md-10 col-sm-10">
+                                                                    <p:fileUpload class="" id="foodimage" invalidSizeMessage="Dosya boyutu çok fazla"  fileLimitMessage="10 resimden fazla yüklenemez" cancelLabel="İptal" invalidFileMessage="Geçersiz dosya tipi."  uploadLabel="Yükle" label="Dosya Seç"  fileUploadListener="#{foodManagerBean.img.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" fileLimit="10" multiple="true" sizeLimit="3024000" dragDropSupport="true"></p:fileUpload>
+                                                                    <h:message class="alert-span alert-danger" for="foodimage" ></h:message>
+                                                                </div>
+                                                                <div class="col-lg-2 col-md-2 col-sm-2">
+
+                                                                </div>
+                                                                <div class="col-lg-10 col-md-10 col-sm-10">
+                                                                    <strong><p>Çoklu resim yükleyebilirsiniz.</p></strong>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                                                    <p>Kategori*</p>
+                                                                </div>
+                                                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                                                    <h:selectOneMenu id="foodcategory" required="true" requiredMessage="Lütfen yemeğin kategorisini giriniz."  value="#{foodManagerBean.foodCategoryid}">
+                                                                        <f:selectItems value="#{categoryServiceBean.categories}" var="category" itemValue="#{category.id}" itemLabel="#{category.name}"></f:selectItems>
+                                                                    </h:selectOneMenu>
+
+                                                                </div>
+                                                                <h:message class="alert-span alert-danger" for="foodcategory"></h:message>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                                                    <p>Birim Miktar*</p>
+                                                                </div>
+                                                                <div  class="col-lg-2 col-md-2 col-sm-2">
+                                                                    <h:inputText id="foodquantity" value="#{foodManagerBean.quantityPrice.quantity}"  required="true" requiredMessage="Lütfen yemeğin birim miktarınını giriniz." />
+
+                                                                </div>
+                                                                <div  class="col-lg-5 col-md-5 col-sm-5">
+                                                                    <strong><p>Kg,gr ve kişi sayısı gibi bilgi giriniz.</p></strong>
+                                                                </div>
+                                                                <h:message for="foodquantity" class="alert-span alert-danger"></h:message>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                                                    <p>Hazırlık Süresi*</p>
+                                                                </div>
+                                                                <div   class="col-md-2 col-sm-2">
+                                                                    <p:inputMask value="#{foodManagerBean.food.preparationTime}" id="date" required="true" requiredMessage="Lütfen yemek hazırlanma süresini giriniz."   mask="99:99" />
+                                                                </div>
+                                                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                                                    <strong><p>Saat:Dakika şeklinde giriniz</p></strong>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                                                    <p>Birim Fiyatı*</p>
+                                                                </div>
+                                                                <div   class="col-md-2 col-sm-2">
+                                                                    <p:inputMask value="#{foodManagerBean.price}"  mask="999.99"  required="true" requiredMessage="Lütfen yemek birim fiyatını giriniz." id="foodprice"/>
+
+                                                                </div>
+                                                                <h:message for="foodprice" class="alert-span alert-danger"></h:message>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                    <h:commandButton class="big" action="#{foodManagerBean.save()}" value="Kaydet"></h:commandButton>
+                                                                </div>
+
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    </h:form>
                                                 </div>
                                             </div>
                                         </div>

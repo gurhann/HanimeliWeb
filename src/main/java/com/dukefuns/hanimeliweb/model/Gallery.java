@@ -36,7 +36,9 @@ public class Gallery implements Serializable {
 
     @OneToOne
     private Person user;
-
+    
+    
+        
     private String name;
     
     @OneToMany(mappedBy = "gallery", cascade = CascadeType.ALL)
